@@ -1,0 +1,5 @@
+node_modules/\n.next/\n*.tsbuildinfo\n.env*\n.DS_Store\n
+
+# Build output
+.next/
+node_modules/

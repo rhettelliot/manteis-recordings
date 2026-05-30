@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* The Void — depth carved from absolute black */
+  --void: #000000;
+  --void-raised: #0C0C0C;
+  --void-elevated: #141414;
+  --void-float: #1C1C1C;
+  --void-input: #0F0F0F;
+
+  /* The Signal — Electric Blue, the label's voice */
+  --signal: #007AFF;
+  --signal-dim: rgba(0, 122, 255, 0.10);
+  --signal-glow: rgba(0, 122, 255, 0.25);
+  --signal-border: rgba(0, 122, 255, 0.35);
+
+  /* Solar Gold — warmth for featured moments */
+  --solar: #FF6B35;
+  --solar-dim: rgba(255, 107, 53, 0.10);
+  --solar-glow: rgba(255, 107, 53, 0.25);
+
+  /* The Edge — surfaces lit at their rim */
+  --edge-ghost: rgba(255, 255, 255, 0.04);
+  --edge-faint: rgba(255, 255, 255, 0.08);
+  --edge-subtle: rgba(255, 255, 255, 0.12);
+  --edge-clear: rgba(255, 255, 255, 0.22);
+  --edge-bright: rgba(255, 255, 255, 0.45);
+
+  /* Type */
+  --light: #FFFFFF;
+  --light-dim: #999999;
+  --light-muted: #5A5A5A;
+
+  /* Motion */
+  --duration-fast: 0.15s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.5s;
+  --duration-cinematic: 1.2s;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cinematic: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  --ease-enter: cubic-bezier(0.00, 0.00, 0.25, 1.00);
+  --ease-exit: cubic-bezier(0.75, 0.00, 1.00, 1.00);
+  --ease-drift: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@layer base {
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  body {
+    background: var(--void);
+    color: var(--light);
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--signal);
+    color: var(--void);
+  }
+}
+
+@layer components {
+  /* Silkscreen label */
+  .section-label {
+    @apply text-[10px] font-bold tracking-[0.18em] uppercase font-mono text-accent;
+  }
+
+  .section-heading {
+    @apply font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-[-0.03em] max-w-[900px];
+  }
+
+  .section-body {
+    @apply text-base text-light-dim max-w-[520px] mt-4 leading-relaxed;
+  }
+
+  /* Release plate — vinyl-inspired card */
+  .release-card {
+    background: var(--void-raised);
+    border: 1px solid var(--edge-faint);
+    transition: 
+      border-color var(--duration-fast) var(--ease-cinematic),
+      background-color var(--duration-fast) var(--ease-cinematic),
+      transform var(--duration-normal) var(--ease-out);
+  }
+  .release-card:hover {
+    border-color: var(--signal-border);
+    background: var(--void-elevated);
+    transform: translateY(-2px);
+  }
+
+  /* Mechanical press */
+  .btn-snap {
+    transition: transform 75ms ease;
+  }
+  .btn-snap:active {
+    transform: scale(0.97);
+  }
+
+  /* Section divider */
+  .divider-glow {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--edge-faint) 30%,
+      var(--edge-subtle) 50%,
+      var(--edge-faint) 70%,
+      transparent 100%
+    );
+  }
+
+  /* Atmospheric vignette */
+  .fog-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 160px;
+    background: linear-gradient(to bottom, var(--void) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 40;
+  }
+
+  .fog-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, var(--void) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 40;
+  }
+
+  /* Vinyl groove pattern */
+  .vinyl-grooves {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0px,
+      transparent 3px,
+      rgba(255, 255, 255, 0.015) 3.5px,
+      transparent 4px
+    );
+  }
+
+  /* Film grain */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  /* Release number badge */
+  .catalog-badge {
+    @apply font-mono text-[9px] tracking-[0.2em] uppercase text-light-muted;
+  }
+
+  /* Animated vinyl spin */
+  @keyframes vinyl-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .vinyl-spin {
+    animation: vinyl-spin 20s linear infinite;
+    animation-play-state: paused;
+  }
+  .release-card:hover .vinyl-spin {
+    animation-play-state: running;
+  }
+
+  /* Marquee */
+  .marquee-track {
+    display: flex;
+    animation: marquee-scroll 50s linear infinite;
+    width: max-content;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--void-raised);
+    border: 1px solid var(--edge-faint);
+  }
+
+  /* Hollow stroke typography */
+  .hollow-text {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
+    transition: 
+      -webkit-text-fill-color 0.4s var(--ease-cinematic),
+      -webkit-text-stroke 0.4s var(--ease-cinematic);
+  }
+  .hollow-text:hover {
+    -webkit-text-fill-color: var(--light);
+    -webkit-text-stroke: 1px var(--light);
+  }
+
+  /* Hard chamfered corners */
+  .cyber-corner {
+    clip-path: polygon(
+      0 12px,
+      12px 0,
+      100% 0,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      0 100%
+    );
+  }
+
+  /* Circular clip for vinyl feel */
+  .vinyl-clip {
+    clip-path: circle(48% at 50% 50%);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none !important; }
+  .vinyl-spin { animation: none !important; }
+  .noise-overlay { display: none !important; }
+}
+
+@media (hover: none) {
+  .custom-cursor { display: none !important; }
+}
