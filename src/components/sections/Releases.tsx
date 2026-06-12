@@ -1,11 +1,8 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
-
-gsap.registerPlugin(ScrollTrigger)
+import { revealOnEnter } from '@/lib/reveal'
 
 interface Release {
   id: string
@@ -125,24 +122,13 @@ export function Releases() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.release-card').forEach((card, i) => {
-        gsap.from(card, {
-          y: 60,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 88%',
-            once: true,
-          },
-          delay: i % 3 * 0.1,
-        })
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
+    const root = sectionRef.current
+    if (!root) return
+    const disposers: Array<() => void> = []
+    ;(async () => {
+      disposers.push(await revealOnEnter(root.querySelectorAll('.release-card'), { y: 60, duration: 0.8, stagger: 0.1 }))
+    })()
+    return () => disposers.forEach((d) => d())
   }, [])
 
   return (

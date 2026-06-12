@@ -124,6 +124,7 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
   return (
     <div
       ref={gateRef}
+      data-gate=""
       className="fixed inset-0 z-[1000] flex items-center justify-center flex-col gap-6 pointer-events-auto bg-void"
     >
       {/* Radial glow — label warmth */}

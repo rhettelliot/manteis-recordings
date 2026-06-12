@@ -1,10 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+import { revealOnEnter } from '@/lib/reveal'
 
 interface Artist {
   name: string
@@ -16,45 +13,25 @@ interface Artist {
 }
 
 const artists: Artist[] = [
-  { name: 'Red Shift Mantra', path: '/red-shift-mantra', role: 'Electronic / Synthwave', releases: 2, color: '#007AFF', tagline: 'Cosmic pressure' },
-  { name: 'The Manteis Project', path: '/the-manteis-project', role: 'Ambient / Quantum Architecture', releases: 4, color: '#7C3AED', tagline: 'Signal architecture' },
-  { name: 'Thesan Musique', path: '/thesan-musique', role: 'Deep Dance / Techno / DnB', releases: 1, color: '#00FFDD', tagline: 'Warehouse bass' },
-  { name: 'Brindavan Gardens', path: '/brindavan-gardens', role: 'Spiritual / Shoegaze / Dream', releases: 1, color: '#D4A843', tagline: 'Devotional reverb' },
-  { name: 'Bethany Pritchett', path: '/bethany-pritchett', role: 'Alternative / Vocal / Synthesist', releases: 1, color: '#C4788A', tagline: 'Intimate poetry' },
+  { name: 'Red Shift Mantra', path: 'https://redshiftmantra.com', role: 'Electronic / Synthwave', releases: 2, color: '#007AFF', tagline: 'Cosmic pressure' },
+  { name: 'The Manteis Project', path: 'https://themanteisproject.com', role: 'Ambient / Quantum Architecture', releases: 4, color: '#7C3AED', tagline: 'Signal architecture' },
+  { name: 'Thesan Musique', path: 'https://thesanmusique.com', role: 'Deep Dance / Techno / DnB', releases: 1, color: '#00FFDD', tagline: 'Warehouse bass' },
+  { name: 'Brindavan Gardens', path: 'https://brindavangardens.com', role: 'Spiritual / Shoegaze / Dream', releases: 1, color: '#D4A843', tagline: 'Devotional reverb' },
+  { name: 'Bethany Pritchett', path: 'https://bethanypritchett.com', role: 'Alternative / Vocal / Synthesist', releases: 1, color: '#C4788A', tagline: 'Intimate poetry' },
 ]
 
 export function Artists() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.artist-row', {
-        y: 40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          once: true,
-        },
-      })
-
-      gsap.from('.artists-heading', {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 85%',
-          once: true,
-        },
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
+    const root = sectionRef.current
+    if (!root) return
+    const disposers: Array<() => void> = []
+    ;(async () => {
+      disposers.push(await revealOnEnter(root.querySelectorAll('.artists-heading'), { y: 60, duration: 0.8 }))
+      disposers.push(await revealOnEnter(root.querySelectorAll('.artist-row'), { y: 40, duration: 0.6, stagger: 0.08 }))
+    })()
+    return () => disposers.forEach((d) => d())
   }, [])
 
   return (
@@ -72,6 +49,8 @@ export function Artists() {
             <a
               key={artist.name}
               href={artist.path}
+              target="_blank"
+              rel="noreferrer noopener"
               className="artist-row group flex items-baseline justify-between py-6 md:py-8 border-b border-edge-faint hover:border-edge-subtle transition-colors duration-300 cursor-pointer"
             >
               <div className="flex-1">
