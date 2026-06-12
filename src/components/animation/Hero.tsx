@@ -14,31 +14,47 @@ export function Hero() {
   const heroRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.1 })
 
-      gsap.set('.hero-title-inner', { yPercent: 120, skewY: 5 })
-      gsap.set('.hero-tagline', { opacity: 0, y: 30 })
-      gsap.set('.hero-label-top', { opacity: 0, y: -20 })
+      if (!isReducedMotion) {
+        gsap.set('.hero-title-inner', { yPercent: 120, skewY: 5 })
+        gsap.set('.hero-tagline', { opacity: 0, y: 30 })
+        gsap.set('.hero-label-top', { opacity: 0, y: -20 })
+      }
 
-      tl.from('.hero-label-top', { y: -20, opacity: 0, duration: 1, ease: 'power3.out' })
+      tl.from('.hero-label-top', { 
+        y: isReducedMotion ? 0 : -20, 
+        opacity: isReducedMotion ? 1 : 0, 
+        duration: isReducedMotion ? 0 : 1, 
+        ease: 'power3.out' 
+      })
         .to('.hero-title-inner', {
           yPercent: 0,
           skewY: 0,
-          duration: 1.4,
+          duration: isReducedMotion ? 0 : 1.4,
           stagger: 0.12,
           ease: 'power4.out',
         }, '-=0.6')
-        .from('.hero-tagline', { y: 30, opacity: 0, duration: 1, ease: 'power3.out' }, '-=0.8')
+        .from('.hero-tagline', { 
+          y: isReducedMotion ? 0 : 30, 
+          opacity: isReducedMotion ? 1 : 0, 
+          duration: isReducedMotion ? 0 : 1, 
+          ease: 'power3.out' 
+        }, '-=0.8')
 
       // Scroll indicator bob
-      gsap.to('.hero-scroll-arrow', {
-        y: 8,
-        duration: 1.5,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-      })
+      if (!isReducedMotion) {
+        gsap.to('.hero-scroll-arrow', {
+          y: 8,
+          duration: 1.5,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+        })
+      }
     }, heroRef)
 
     return () => ctx.revert()

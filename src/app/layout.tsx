@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import '@/styles/globals.css'
 import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google'
 
@@ -29,8 +29,19 @@ export const metadata: Metadata = {
     title: 'Manteis Recordings',
     description: 'Deep textural electronic music — Manteis Recordings',
     type: 'website',
-    images: ['/ManteisRecordings_color.png'],
+    images: [{ url: '/og.jpg', width: 1200, height: 1200, alt: 'Manteis Recordings — deep textural electronic music' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Manteis Recordings',
+    description: 'Deep textural electronic music — Manteis Recordings',
+    images: ['/og.jpg'],
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#000000',
+  colorScheme: 'dark',
 }
 
 export default function RootLayout({

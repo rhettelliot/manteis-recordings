@@ -11,10 +11,10 @@
   --void-input: #0F0F0F;
 
   /* The Signal — Electric Blue, the label's voice */
-  --signal: #007AFF;
-  --signal-dim: rgba(0, 122, 255, 0.10);
-  --signal-glow: rgba(0, 122, 255, 0.25);
-  --signal-border: rgba(0, 122, 255, 0.35);
+  --accent: #007AFF;
+  --accent-dim: rgba(0, 122, 255, 0.10);
+  --accent-glow: rgba(0, 122, 255, 0.25);
+  --accent-border: rgba(0, 122, 255, 0.35);
 
   /* Solar Gold — warmth for featured moments */
   --solar: #FF6B35;
@@ -170,7 +170,19 @@
     background-size: 256px 256px;
   }
 
+  .cyber-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, var(--edge-ghost) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--edge-ghost) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 70%);
+  }
+
   /* Release number badge */
+
   .catalog-badge {
     @apply font-mono text-[9px] tracking-[0.2em] uppercase text-light-muted;
   }

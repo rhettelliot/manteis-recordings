@@ -18,28 +18,50 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     setMounted(true)
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 })
 
       // Initial state — everything hidden
-      gsap.set('.gate-line', { scaleX: 0 })
-      gsap.set('.gate-label', { y: 20, opacity: 0 })
-      gsap.set('.gate-title-inner', { yPercent: 110 })
-      gsap.set('.gate-tagline', { y: 20, opacity: 0 })
-      gsap.set('.gate-enter', { y: 20, opacity: 0 })
+      if (!isReducedMotion) {
+        gsap.set('.gate-line', { scaleX: 0 })
+        gsap.set('.gate-label', { y: 20, opacity: 0 })
+        gsap.set('.gate-title-inner', { yPercent: 110 })
+        gsap.set('.gate-tagline', { y: 20, opacity: 0 })
+        gsap.set('.gate-enter', { y: 20, opacity: 0 })
+      }
 
       // Sequence: line → label → title → tagline → enter
-      tl.to('.gate-line', { scaleX: 1, duration: 1.2, ease: 'power4.inOut' })
-        .to('.gate-label', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.6')
+      tl.to('.gate-line', { 
+        scaleX: isReducedMotion ? 1 : 1, 
+        duration: isReducedMotion ? 0 : 1.2, 
+        ease: 'power4.inOut' 
+      })
+        .to('.gate-label', { 
+          y: isReducedMotion ? 0 : 0, 
+          opacity: isReducedMotion ? 1 : 1, 
+          duration: isReducedMotion ? 0 : 0.6, 
+          ease: 'power3.out' 
+        }, '-=0.6')
         .to('.gate-title-inner', {
           yPercent: 0,
-          duration: 1.0,
+          duration: isReducedMotion ? 0 : 1.0,
           stagger: 0.08,
           ease: 'power4.out',
         }, '-=0.4')
-        .to('.gate-tagline', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.5')
-        .to('.gate-enter', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+        .to('.gate-tagline', { 
+          y: isReducedMotion ? 0 : 0, 
+          opacity: isReducedMotion ? 1 : 1, 
+          duration: isReducedMotion ? 0 : 0.8, 
+          ease: 'power3.out' 
+        }, '-=0.5')
+        .to('.gate-enter', { 
+          y: isReducedMotion ? 0 : 0, 
+          opacity: isReducedMotion ? 1 : 1, 
+          duration: isReducedMotion ? 0 : 0.6, 
+          ease: 'power3.out' 
+        }, '-=0.3')
 
       tlRef.current = tl
     }, gateRef)
