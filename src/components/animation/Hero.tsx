@@ -115,7 +115,7 @@ export function Hero() {
             alt="Manteis Recordings brand cube"
             fill
             className="object-contain"
-            sizes="128px"
+            sizes="256px"
             priority
           />
         </div>
