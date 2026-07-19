@@ -6,7 +6,7 @@ export default function NotFound() {
       className="min-h-screen flex flex-col items-center justify-center text-center px-6"
       style={{ backgroundColor: '#000000' }}
     >
-      <p className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: '#007AFF' }}>
+      <p className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: '#FF007F' }}>
         404 — No such frequency
       </p>
       <h1 className="font-display text-4xl md:text-6xl mt-6 mb-4" style={{ color: '#F0F0F0' }}>
@@ -18,7 +18,7 @@ export default function NotFound() {
       <Link
         href="/"
         className="font-mono text-[10px] tracking-[0.25em] uppercase px-8 py-4 border transition-colors duration-200"
-        style={{ borderColor: '#007AFF', color: '#007AFF' }}
+        style={{ borderColor: '#FF007F', color: '#FF007F' }}
       >
         Return to the label
       </Link>

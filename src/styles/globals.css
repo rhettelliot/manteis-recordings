@@ -10,16 +10,11 @@
   --void-float: #1C1C1C;
   --void-input: #0F0F0F;
 
-  /* The Signal — Electric Blue, the label's voice */
-  --accent: #007AFF;
-  --accent-dim: rgba(0, 122, 255, 0.10);
-  --accent-glow: rgba(0, 122, 255, 0.25);
-  --accent-border: rgba(0, 122, 255, 0.35);
-
-  /* Solar Gold — warmth for featured moments */
-  --solar: #FF6B35;
-  --solar-dim: rgba(255, 107, 53, 0.10);
-  --solar-glow: rgba(255, 107, 53, 0.25);
+  /* The Signal — Neon Pink, the label's voice (Music: #FF007F) */
+  --accent: #FF007F;
+  --accent-dim: rgba(255, 0, 127, 0.10);
+  --accent-glow: rgba(255, 0, 127, 0.25);
+  --accent-border: rgba(255, 0, 127, 0.35);
 
   /* The Edge — surfaces lit at their rim */
   --edge-ghost: rgba(255, 255, 255, 0.04);
@@ -69,7 +64,7 @@
   }
 
   ::selection {
-    background: var(--signal);
+    background: var(--accent);
     color: var(--void);
   }
 }
@@ -98,7 +93,7 @@
       transform var(--duration-normal) var(--ease-out);
   }
   .release-card:hover {
-    border-color: var(--signal-border);
+    border-color: var(--edge-clear);
     background: var(--void-elevated);
     transform: translateY(-2px);
   }
@@ -201,6 +196,28 @@
     animation-play-state: running;
   }
 
+  /* Hero brand cube — slow drift, weight not speed */
+  @keyframes cube-drift {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .cube-drift {
+    animation: cube-drift 7s ease-in-out infinite;
+  }
+
+  /* Hero frequency strip — faint spectrum, structural not decorative */
+  @keyframes freq-pulse {
+    0%, 100% { transform: scaleY(0.25); }
+    50% { transform: scaleY(1); }
+  }
+  .freq-bar {
+    width: 2px;
+    background: var(--edge-faint);
+    transform-origin: bottom;
+    transform: scaleY(0.25);
+    animation: freq-pulse 3s ease-in-out infinite;
+  }
+
   /* Marquee */
   .marquee-track {
     display: flex;
@@ -273,7 +290,7 @@
 }
 /* Keyboard navigation — accent outline, only for keyboard focus */
 :focus-visible {
-  outline: 1px solid #007AFF;
+  outline: 1px solid #FF007F;
   outline-offset: 3px;
 }
 

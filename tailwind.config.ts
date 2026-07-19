@@ -15,18 +15,12 @@ const config: Config = {
           soft: '#0C0C0C',
           warm: '#0D0B08',
         },
-        /* The Signal — Electric Blue accent for the label */
+        /* The Signal — Neon Pink, the label's voice (Music: #FF007F) */
         accent: {
-          DEFAULT: '#007AFF',
-          dim: 'rgba(0, 122, 255, 0.10)',
-          glow: 'rgba(0, 122, 255, 0.25)',
-          border: 'rgba(0, 122, 255, 0.35)',
-        },
-        /* Solar Gold — warm accent for featured releases */
-        solar: {
-          DEFAULT: '#FF6B35',
-          dim: 'rgba(255, 107, 53, 0.10)',
-          glow: 'rgba(255, 107, 53, 0.25)',
+          DEFAULT: '#FF007F',
+          dim: 'rgba(255, 0, 127, 0.10)',
+          glow: 'rgba(255, 0, 127, 0.25)',
+          border: 'rgba(255, 0, 127, 0.35)',
         },
         /* Typography & edges */
         light: '#FFFFFF',
@@ -41,7 +35,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['var(--font-display)', 'Playfair Display', 'serif'],
+        display: ['var(--font-display)', 'Space Grotesk', 'sans-serif'],
         body: ['var(--font-body)', 'Inter', 'sans-serif'],
         mono: ['var(--font-mono)', 'JetBrains Mono', 'monospace'],
       },

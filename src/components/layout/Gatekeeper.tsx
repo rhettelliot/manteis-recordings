@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
 interface GatekeeperProps {
@@ -15,11 +15,9 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
   const gateRef = useRef<HTMLDivElement>(null)
   const tlRef = useRef<gsap.core.Timeline | null>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    setMounted(true)
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 })
 
@@ -127,16 +125,6 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
       data-gate=""
       className="fixed inset-0 z-[1000] flex items-center justify-center flex-col gap-6 pointer-events-auto bg-void"
     >
-      {/* Radial glow — label warmth */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: mounted
-            ? 'radial-gradient(ellipse at 50% 40%, rgba(0,122,255,0.06) 0%, rgba(255,107,53,0.03) 40%, rgba(0,0,0,0) 70%)'
-            : 'none',
-        }}
-      />
-
       {/* Vinyl groove texture */}
       <div className="absolute inset-0 pointer-events-none vinyl-grooves opacity-30" />
 
@@ -148,16 +136,16 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
 
       {/* Title with masked reveal */}
       <div className="gate-title-wrap overflow-hidden flex items-baseline gap-3 md:gap-5">
-        <div className="gate-title-inner font-display text-[clamp(2.5rem,9vw,8rem)] font-900 leading-[0.9] tracking-[-0.03em]">
+        <div className="gate-title-inner font-display text-[clamp(2.5rem,9vw,8rem)] font-bold leading-[0.9] tracking-[-0.03em]">
           Manteis
         </div>
-        <div className="gate-title-inner font-display text-[clamp(2rem,5vw,4rem)] font-400 italic leading-[0.9] tracking-[0.05em] text-light-dim">
+        <div className="gate-title-inner font-display text-[clamp(2rem,5vw,4rem)] font-light leading-[0.9] tracking-[0.08em] uppercase text-light-dim">
           Recordings
         </div>
       </div>
 
       <p className="gate-tagline font-mono text-[11px] tracking-[0.2em] uppercase text-light-muted max-w-md text-center">
-        Deep textural electronic music
+        Sovereign sound architecture
       </p>
 
       <button

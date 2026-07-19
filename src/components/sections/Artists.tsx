@@ -2,24 +2,12 @@
 
 import { useEffect, useRef } from 'react'
 import { revealOnEnter } from '@/lib/reveal'
+import { artists } from '@/lib/catalog'
 
-interface Artist {
-  name: string
-  path: string
-  role: string
-  releases: number
-  color: string
-  tagline: string
-}
-
-const artists: Artist[] = [
-  { name: 'Red Shift Mantra', path: 'https://redshiftmantra.com', role: 'Electronic / Synthwave', releases: 2, color: '#007AFF', tagline: 'Cosmic pressure' },
-  { name: 'The Manteis Project', path: 'https://manteis-project-site.vercel.app', role: 'Ambient / Quantum Architecture', releases: 4, color: '#7C3AED', tagline: 'Signal architecture' },
-  { name: 'Thesan Musique', path: 'https://thesan-musique-site.vercel.app', role: 'Deep Dance / Techno / DnB', releases: 1, color: '#00FFDD', tagline: 'Warehouse bass' },
-  { name: 'Brindavan Gardens', path: 'https://brindavan-gardens-site.vercel.app', role: 'Spiritual / Shoegaze / Dream', releases: 1, color: '#D4A843', tagline: 'Devotional reverb' },
-  { name: 'Bethany Pritchett', path: 'https://bethany-pritchett-site.vercel.app', role: 'Alternative / Vocal / Synthesist', releases: 1, color: '#C4788A', tagline: 'Intimate poetry' },
-]
-
+/**
+ * The roster — each artist is a hub row linking out to their dedicated site.
+ * The artist's own accent color appears on their row only.
+ */
 export function Artists() {
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -39,46 +27,63 @@ export function Artists() {
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="section-label mb-20">Roster /</div>
 
-        <h2 className="artists-heading font-display text-4xl md:text-6xl font-bold leading-[1.02] tracking-[-0.03em] mb-16">
+        <h2 className="artists-heading font-display text-4xl md:text-6xl font-bold leading-[1.02] tracking-[-0.03em] mb-6">
           <span className="hollow-text">Artists</span>
         </h2>
+        <p className="artists-heading font-mono text-[11px] tracking-[0.15em] uppercase text-light-muted mb-16 max-w-md">
+          Five artists, each with a dedicated site. Select a row to enter their world.
+        </p>
 
-        {/* Artist list — editorial layout with links to artist subsites */}
         <div className="border-t border-edge-faint">
-          {artists.map((artist) => (
+          {artists.map((artist, i) => (
             <a
               key={artist.name}
-              href={artist.path}
+              href={artist.url}
               target="_blank"
               rel="noreferrer noopener"
-              className="artist-row group flex items-baseline justify-between py-6 md:py-8 border-b border-edge-faint hover:border-edge-subtle transition-colors duration-300 cursor-pointer"
+              aria-label={`Visit the ${artist.name} website`}
+              className="artist-row group grid grid-cols-[auto_1fr_auto] gap-x-4 md:gap-x-8 items-center py-8 md:py-10 border-b border-edge-faint transition-colors duration-300 cursor-pointer relative pl-4 md:pl-6"
             >
-              <div className="flex-1">
-                <div className="flex items-baseline gap-3 md:gap-6">
+              {/* Accent rail — the artist's color, their row only */}
+              <span
+                aria-hidden="true"
+                className="absolute left-0 top-0 bottom-0 w-[2px] scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-500"
+                style={{ background: artist.color }}
+              />
+
+              {/* Index */}
+              <span className="font-mono text-[10px] tracking-[0.2em] text-light-muted self-start pt-2">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
+              {/* Name + meta */}
+              <div className="min-w-0">
+                <h3 className="font-display text-2xl md:text-4xl font-bold tracking-[-0.02em] text-light transition-transform duration-500 group-hover:translate-x-2">
+                  {artist.name}
+                </h3>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2">
                   <span
-                    className="font-mono text-[10px] tracking-[0.15em] uppercase"
-                    style={{ color: artist.color }}
+                    className="font-mono text-[10px] tracking-[0.15em] uppercase px-2 py-[3px] border"
+                    style={{ color: artist.color, borderColor: `${artist.color}59` }}
                   >
+                    {artist.role}
+                  </span>
+                  <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted">
                     {artist.releases} {artist.releases === 1 ? 'release' : 'releases'}
                   </span>
-                  <h3 className="font-display text-xl md:text-3xl font-bold tracking-[-0.02em] group-hover:text-accent transition-colors duration-300">
-                    {artist.name}
-                  </h3>
-                </div>
-                <div className="flex items-center gap-3 mt-1 ml-0 md:ml-[max(2rem,4rem)]">
-                  <p className="font-mono text-[11px] tracking-[0.1em] uppercase text-light-muted">
-                    {artist.role}
-                  </p>
                   <span className="font-mono text-[10px] text-light-muted/40">·</span>
-                  <p className="font-mono text-[10px] tracking-[0.05em] italic" style={{ color: artist.color, opacity: 0.7 }}>
+                  <span className="font-mono text-[10px] tracking-[0.08em] text-light-dim">
                     {artist.tagline}
-                  </p>
+                  </span>
                 </div>
               </div>
 
-              <div className="font-mono text-[10px] tracking-[0.15em] uppercase text-light-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                View →
-              </div>
+              {/* Visit site — visible on touch, slides in on hover */}
+              <span
+                className="font-mono text-[10px] tracking-[0.2em] uppercase whitespace-nowrap text-light-muted md:opacity-40 group-hover:opacity-100 md:-translate-x-2 group-hover:translate-x-0 transition-all duration-300 group-hover:text-light"
+              >
+                Visit Site →
+              </span>
             </a>
           ))}
         </div>
