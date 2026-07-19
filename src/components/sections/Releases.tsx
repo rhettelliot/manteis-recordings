@@ -124,7 +124,7 @@ export function Releases() {
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
                 />
                 {/* Hover reveal — solid scrim, no gradient */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none flex items-center justify-center bg-void/70">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none flex items-center justify-center bg-void/70">
                   <span
                     className="font-mono text-[11px] tracking-[0.2em] uppercase px-4 py-2 border"
                     style={{ borderColor: release.color, color: release.color }}
@@ -133,11 +133,11 @@ export function Releases() {
                   </span>
                 </div>
                 {/* Catalog number badge */}
-                <div className="absolute top-3 left-3 font-mono text-[9px] tracking-[0.15em] uppercase text-light/60 bg-void/70 px-2 py-1 border border-edge-ghost">
+                <div className="absolute top-3 left-3 font-mono text-[9px] tracking-[0.15em] uppercase text-light/55 bg-void/70 px-2 py-1 border border-edge-ghost">
                   {release.catalogNumber}
                 </div>
                 {/* Year badge */}
-                <div className="absolute top-3 right-3 font-mono text-[9px] tracking-[0.15em] uppercase text-light/60 bg-void/70 px-2 py-1 border border-edge-ghost">
+                <div className="absolute top-3 right-3 font-mono text-[9px] tracking-[0.15em] uppercase text-light/55 bg-void/70 px-2 py-1 border border-edge-ghost">
                   {release.year}
                 </div>
               </div>

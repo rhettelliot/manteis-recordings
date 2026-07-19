@@ -38,6 +38,7 @@ export function CTASection() {
 
           <a
             href="mailto:demo@manteisrecordings.com"
+            aria-label="Submit demo via email"
             className="inline-block font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4
               border border-accent text-accent hover:bg-accent hover:text-void
               transition-all duration-300 btn-snap"

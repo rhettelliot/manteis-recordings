@@ -18,6 +18,12 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
 
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (isReducedMotion) {
+      onEnter()
+      return
+    }
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 })
 
@@ -96,7 +102,13 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
     const gate = gateRef.current
     if (!gate) return
 
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     tlRef.current?.kill()
+
+    if (isReducedMotion) {
+      onEnter()
+      return
+    }
 
     const exitTl = gsap.timeline({
       onComplete: () => onEnter(),
@@ -153,23 +165,34 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
         onClick={handleEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') handleEnter()
+        }}
         className="gate-enter mt-10 font-mono text-[11px] tracking-[0.3em] uppercase text-light-dim
           border border-edge-subtle px-14 py-4 btn-snap overflow-hidden group
           hover:border-accent hover:text-light transition-colors duration-300
-          focus:outline-none focus-visible:border-accent"
+          focus-visible:border-accent focus-visible:text-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         style={{ willChange: 'transform', transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}
         aria-label="Enter the Manteis Recordings website"
+        autoFocus
       >
         <span className="block transition-transform duration-300 ease-out will-change-transform">
           Enter
         </span>
       </button>
 
+      <div
+        role="none"
+        className="absolute inset-0 pointer-events-none"
+        tabIndex={-1}
+        aria-hidden="true"
+      />
+
       {/* Bottom coordinates — label location stamp */}
-      <div className="absolute bottom-8 left-8 font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted opacity-25">
+      <div className="absolute bottom-8 left-8 font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted/55">
         Est. 2024
       </div>
-      <div className="absolute bottom-8 right-8 font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted opacity-25">
+      <div className="absolute bottom-8 right-8 font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted/55">
         Seattle, WA
       </div>
     </div>

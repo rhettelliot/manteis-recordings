@@ -22,9 +22,8 @@ export function Hero() {
 
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.1 })
+      const tl = gsap.timeline({ delay: isReducedMotion ? 0 : 0.1 })
 
       if (!isReducedMotion) {
         gsap.set('.hero-cube', { opacity: 0, y: 20 })
@@ -142,7 +141,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <div className="hero-scroll absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-10">
-        <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-light-muted/50">Catalog</span>
+        <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-light-muted/60">Catalog</span>
         <div className="w-[1px] h-8 bg-edge-subtle relative overflow-hidden">
           <div className="hero-scroll-arrow absolute top-0 left-0 w-full h-1/2 bg-accent" />
         </div>

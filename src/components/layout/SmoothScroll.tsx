@@ -19,9 +19,11 @@ export function SiteShell({ children }: SiteShellProps) {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     const lenis = new Lenis({
-      lerp: 0.08,
-      smoothWheel: true,
+      lerp: isReducedMotion ? 1 : 0.08,
+      smoothWheel: !isReducedMotion,
     })
     lenisRef.current = lenis
 
@@ -43,8 +45,8 @@ export function SiteShell({ children }: SiteShellProps) {
 
   return (
     <>
-      <div className="fog-top" />
-      <div className="fog-bottom" />
+      <div className="fog-top" aria-hidden="true" />
+      <div className="fog-bottom" aria-hidden="true" />
       {children}
     </>
   )

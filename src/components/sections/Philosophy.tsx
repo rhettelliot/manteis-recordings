@@ -74,6 +74,7 @@ export function Philosophy() {
               href="https://manteis.systems"
               target="_blank"
               rel="noreferrer noopener"
+              aria-label="Visit Manteis Systems website (opens in new tab)"
               className="text-light border-b border-edge-clear hover:text-accent hover:border-accent transition-colors duration-300"
             >
               Manteis Systems

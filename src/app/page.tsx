@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <SiteShell>
       <Navigation />
-      <main className="relative w-full" id="top">
+      <main id="main-content" className="relative w-full" tabIndex={-1}>
         {/* Sticky Hero */}
         <div className="sticky top-0 w-full h-screen overflow-hidden z-0">
           <Hero />

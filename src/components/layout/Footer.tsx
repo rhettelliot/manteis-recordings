@@ -33,6 +33,7 @@ export function Footer() {
                   href={artist.url}
                   target="_blank"
                   rel="noreferrer noopener"
+                  aria-label={`Visit ${artist.name} website (opens in new tab)`}
                   className="font-mono text-[10px] tracking-[0.1em] text-light-muted hover:text-accent transition-colors duration-300"
                 >
                   {artist.name} ↗
@@ -51,6 +52,7 @@ export function Footer() {
                 href="https://open.spotify.com/search/manteis%20recordings"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Search Manteis Recordings on Spotify (opens in new tab)"
                 className="font-mono text-[10px] tracking-[0.1em] text-light-muted hover:text-accent transition-colors duration-300"
               >
                 Spotify ↗
@@ -59,6 +61,7 @@ export function Footer() {
                 href="https://music.apple.com"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Open Apple Music (opens in new tab)"
                 className="font-mono text-[10px] tracking-[0.1em] text-light-muted hover:text-accent transition-colors duration-300"
               >
                 Apple Music ↗
@@ -67,6 +70,7 @@ export function Footer() {
                 href="https://www.instagram.com/manteisrecordings"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Visit Manteis Recordings on Instagram (opens in new tab)"
                 className="font-mono text-[10px] tracking-[0.1em] text-light-muted hover:text-accent transition-colors duration-300"
               >
                 Instagram ↗
@@ -75,12 +79,14 @@ export function Footer() {
                 href="https://manteis.systems"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Visit Manteis Systems website (opens in new tab)"
                 className="font-mono text-[10px] tracking-[0.1em] text-light-muted hover:text-accent transition-colors duration-300"
               >
                 Manteis Systems ↗
               </a>
               <a
                 href="mailto:demo@manteisrecordings.com"
+                aria-label="Email Manteis Recordings demos"
                 className="font-mono text-[10px] tracking-[0.1em] text-light-muted hover:text-accent transition-colors duration-300"
               >
                 Contact
@@ -89,7 +95,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="font-mono text-[9px] tracking-[0.1em] text-light-muted/50 mt-16">
+        <p className="font-mono text-[9px] tracking-[0.1em] text-light-muted/55 mt-16">
           © {currentYear} Manteis Recordings. All rights reserved.
         </p>
       </div>

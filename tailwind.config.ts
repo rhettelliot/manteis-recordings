@@ -25,7 +25,7 @@ const config: Config = {
         /* Typography & edges */
         light: '#FFFFFF',
         'light-dim': '#999999',
-        'light-muted': '#5A5A5A',
+        'light-muted': '#6B6B6B',
         edge: {
           ghost: 'rgba(255,255,255,0.04)',
           faint: 'rgba(255,255,255,0.08)',

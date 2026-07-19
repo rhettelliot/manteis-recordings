@@ -23,10 +23,10 @@
   --edge-clear: rgba(255, 255, 255, 0.22);
   --edge-bright: rgba(255, 255, 255, 0.45);
 
-  /* Type */
+  /* Typography & edges */
   --light: #FFFFFF;
   --light-dim: #999999;
-  --light-muted: #5A5A5A;
+  --light-muted: #6B6B6B;
 
   /* Motion */
   --duration-fast: 0.15s;
@@ -97,6 +97,11 @@
     background: var(--void-elevated);
     transform: translateY(-2px);
   }
+  .release-card:focus-within,
+  a:focus-visible .release-card {
+    outline: 1px solid var(--accent);
+    outline-offset: 3px;
+  }
 
   /* Mechanical press */
   .btn-snap {
@@ -105,8 +110,16 @@
   .btn-snap:active {
     transform: scale(0.97);
   }
+  .btn-snap:focus-visible {
+    outline: 1px solid #FF007F;
+    outline-offset: 3px;
+  }
 
-  /* Section divider */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 1px solid #FF007F;
+    outline-offset: 3px;
+  }
   .divider-glow {
     height: 1px;
     background: linear-gradient(
@@ -247,7 +260,9 @@
       -webkit-text-fill-color 0.4s var(--ease-cinematic),
       -webkit-text-stroke 0.4s var(--ease-cinematic);
   }
-  .hollow-text:hover {
+  .hollow-text:hover,
+  a:focus-visible .hollow-text,
+  button:focus-visible .hollow-text {
     -webkit-text-fill-color: var(--light);
     -webkit-text-stroke: 1px var(--light);
   }
@@ -282,6 +297,8 @@
   }
   .marquee-track { animation: none !important; }
   .vinyl-spin { animation: none !important; }
+  .cube-drift { animation: none !important; }
+  .freq-bar { animation: none !important; transform: scaleY(0.6) !important; }
   .noise-overlay { display: none !important; }
 }
 
@@ -292,6 +309,28 @@
 :focus-visible {
   outline: 1px solid #FF007F;
   outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 1001;
+  padding: 0.75rem 1rem;
+  background: var(--void);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* Anchored sections land below the fixed nav */

@@ -71,7 +71,7 @@ export function Artists() {
                   <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted">
                     {artist.releases} {artist.releases === 1 ? 'release' : 'releases'}
                   </span>
-                  <span className="font-mono text-[10px] text-light-muted/40">·</span>
+                  <span className="font-mono text-[10px] text-light-muted/55">·</span>
                   <span className="font-mono text-[10px] tracking-[0.08em] text-light-dim">
                     {artist.tagline}
                   </span>
@@ -80,7 +80,7 @@ export function Artists() {
 
               {/* Visit site — visible on touch, slides in on hover */}
               <span
-                className="font-mono text-[10px] tracking-[0.2em] uppercase whitespace-nowrap text-light-muted md:opacity-40 group-hover:opacity-100 md:-translate-x-2 group-hover:translate-x-0 transition-all duration-300 group-hover:text-light"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase whitespace-nowrap text-light-muted md:opacity-55 group-hover:opacity-100 md:-translate-x-2 group-hover:translate-x-0 transition-all duration-300 group-hover:text-light"
               >
                 Visit Site →
               </span>
