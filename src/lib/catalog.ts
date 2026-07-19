@@ -35,7 +35,7 @@ export const ARTIST_COLORS: Record<string, string> = {
 }
 
 export const artists: Artist[] = [
-  { name: 'Red Shift Mantra', url: 'https://redshiftmantra.com', role: 'Electronic / Synthwave', releases: 2, color: ARTIST_COLORS['Red Shift Mantra'], tagline: 'Cosmic pressure' },
+  { name: 'Red Shift Mantra', url: 'https://redshiftmantra.vercel.app', role: 'Electronic / Synthwave', releases: 2, color: ARTIST_COLORS['Red Shift Mantra'], tagline: 'Cosmic pressure' },
   { name: 'The Manteis Project', url: 'https://manteis-project-site.vercel.app', role: 'Ambient / Quantum Architecture', releases: 4, color: ARTIST_COLORS['The Manteis Project'], tagline: 'Signal architecture' },
   { name: 'Thesan Musique', url: 'https://thesan-musique-site.vercel.app', role: 'Deep Dance / Techno / DnB', releases: 1, color: ARTIST_COLORS['Thesan Musique'], tagline: 'Warehouse bass' },
   { name: 'Brindavan Gardens', url: 'https://brindavan-gardens-site.vercel.app', role: 'Spiritual / Shoegaze / Dream', releases: 1, color: ARTIST_COLORS['Brindavan Gardens'], tagline: 'Devotional reverb' },
