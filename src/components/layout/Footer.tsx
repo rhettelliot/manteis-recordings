@@ -95,7 +95,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="font-mono text-[9px] tracking-[0.1em] text-light-muted/70 mt-16">
+        <p className="font-mono text-[9px] tracking-[0.1em] text-light-muted mt-16">
           © {currentYear} Manteis Recordings. All rights reserved.
         </p>
       </div>

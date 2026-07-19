@@ -189,10 +189,10 @@ export function Gatekeeper({ onEnter }: GatekeeperProps) {
       />
 
       {/* Bottom coordinates — label location stamp */}
-      <div className="absolute bottom-8 left-8 font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted/70">
+      <div className="absolute bottom-8 left-8 font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted">
         Est. 2024
       </div>
-      <div className="absolute bottom-8 right-8 font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted/70">
+      <div className="absolute bottom-8 right-8 font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted">
         Seattle, WA
       </div>
     </div>

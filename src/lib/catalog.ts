@@ -28,10 +28,10 @@ export interface Release {
 /* Per-artist accent colors — used on that artist's row/card ONLY */
 export const ARTIST_COLORS: Record<string, string> = {
   'Red Shift Mantra': '#007AFF',
-  'The Manteis Project': '#7C3AED',
+  'The Manteis Project': '#9F67F5',
   'Thesan Musique': '#00FFDD',
   'Brindavan Gardens': '#D4A843',
-  'Bethany Pritchett': '#C4788A',
+  'Bethany Pritchett': '#B88A9A',
 }
 
 export const artists: Artist[] = [
