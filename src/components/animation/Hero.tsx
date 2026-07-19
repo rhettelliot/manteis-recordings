@@ -109,7 +109,7 @@ export function Hero() {
         </p>
 
         {/* Brand mark — the cube */}
-        <div className="hero-cube cube-drift mx-auto mb-10 w-96 h-96 md:w-[512px] md:h-[512px] relative">
+        <div className="hero-cube cube-drift mx-auto mb-2 w-96 h-96 md:w-[512px] md:h-[512px] relative -mb-16 md:-mb-24">
           <Image
             src="/ManteisRecordings_color.png"
             alt="Manteis Recordings brand cube"
