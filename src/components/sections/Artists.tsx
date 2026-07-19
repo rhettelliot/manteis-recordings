@@ -14,10 +14,10 @@ interface Artist {
 
 const artists: Artist[] = [
   { name: 'Red Shift Mantra', path: 'https://redshiftmantra.com', role: 'Electronic / Synthwave', releases: 2, color: '#007AFF', tagline: 'Cosmic pressure' },
-  { name: 'The Manteis Project', path: 'https://themanteisproject.com', role: 'Ambient / Quantum Architecture', releases: 4, color: '#7C3AED', tagline: 'Signal architecture' },
-  { name: 'Thesan Musique', path: 'https://thesanmusique.com', role: 'Deep Dance / Techno / DnB', releases: 1, color: '#00FFDD', tagline: 'Warehouse bass' },
-  { name: 'Brindavan Gardens', path: 'https://brindavangardens.com', role: 'Spiritual / Shoegaze / Dream', releases: 1, color: '#D4A843', tagline: 'Devotional reverb' },
-  { name: 'Bethany Pritchett', path: 'https://bethanypritchett.com', role: 'Alternative / Vocal / Synthesist', releases: 1, color: '#C4788A', tagline: 'Intimate poetry' },
+  { name: 'The Manteis Project', path: 'https://manteis-project-site.vercel.app', role: 'Ambient / Quantum Architecture', releases: 4, color: '#7C3AED', tagline: 'Signal architecture' },
+  { name: 'Thesan Musique', path: 'https://thesan-musique-site.vercel.app', role: 'Deep Dance / Techno / DnB', releases: 1, color: '#00FFDD', tagline: 'Warehouse bass' },
+  { name: 'Brindavan Gardens', path: 'https://brindavan-gardens-site.vercel.app', role: 'Spiritual / Shoegaze / Dream', releases: 1, color: '#D4A843', tagline: 'Devotional reverb' },
+  { name: 'Bethany Pritchett', path: 'https://bethany-pritchett-site.vercel.app', role: 'Alternative / Vocal / Synthesist', releases: 1, color: '#C4788A', tagline: 'Intimate poetry' },
 ]
 
 export function Artists() {
