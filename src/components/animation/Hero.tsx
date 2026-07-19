@@ -103,24 +103,24 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="text-center relative z-10 px-8 w-full max-w-6xl mx-auto">
-        <p className="hero-label-top font-mono text-[10px] tracking-[0.3em] uppercase text-accent mb-10">
+      <div className="text-center relative z-10 px-8 w-full max-w-6xl mx-auto pt-4">
+        <p className="hero-label-top font-mono text-[10px] tracking-[0.3em] uppercase text-accent mb-4">
           Independent Label · Seattle, WA · Est. 2024
         </p>
 
         {/* Brand mark — the cube */}
-        <div className="hero-cube cube-drift mx-auto mb-2 w-96 h-96 md:w-[512px] md:h-[512px] relative -mb-16 md:-mb-24">
+        <div className="hero-cube cube-drift mx-auto w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative">
           <Image
             src="/ManteisRecordings_color.png"
             alt="Manteis Recordings brand cube"
             fill
             className="object-contain"
-            sizes="512px"
+            sizes="384px"
             priority
           />
         </div>
 
-        <h1 className="overflow-hidden pb-4 mb-6">
+        <h1 className="overflow-hidden pb-2 mb-2 -mt-4">
           <div className="hero-title-inner font-display text-[3.5rem] sm:text-7xl md:text-[8rem] lg:text-[9.5rem] font-bold leading-[0.86] tracking-[-0.04em] text-light">
             Manteis
           </div>
@@ -130,7 +130,7 @@ export function Hero() {
         </h1>
 
         <div className="hero-tagline">
-          <p className="font-mono text-[11px] md:text-[12px] tracking-[0.25em] uppercase text-light mb-3">
+          <p className="font-mono text-[11px] md:text-[12px] tracking-[0.25em] uppercase text-light mb-2">
             Sovereign Sound Architecture
           </p>
           <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-light-muted">
