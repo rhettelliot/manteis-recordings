@@ -2,10 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface SiteShellProps {
   children: React.ReactNode
@@ -21,25 +17,45 @@ export function SiteShell({ children }: SiteShellProps) {
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    const lenis = new Lenis({
-      lerp: isReducedMotion ? 1 : 0.08,
-      smoothWheel: !isReducedMotion,
-    })
-    lenisRef.current = lenis
+    let lenis: Lenis | null = null
+    let gsapInstance: typeof import('gsap').default | null = null
+    let tick: ((time: number) => void) | null = null
+    let active = true
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000)
-    })
-    gsap.ticker.lagSmoothing(0)
+    const init = async () => {
+      const gsap = (await import('gsap')).default
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (!active) return
+      gsap.registerPlugin(ScrollTrigger)
+      gsapInstance = gsap
 
-    lenis.on('scroll', ScrollTrigger.update)
+      lenis = new Lenis({
+        lerp: isReducedMotion ? 1 : 0.08,
+        smoothWheel: !isReducedMotion,
+      })
+      lenisRef.current = lenis
 
-    // Sync on init
-    ScrollTrigger.refresh()
+      // Keep the exact callback reference so cleanup can remove it — passing
+      // lenis.raf here (as the old code did to ticker.remove) removes nothing,
+      // leaking a ticker that calls raf() on a destroyed Lenis.
+      tick = (time: number) => lenis!.raf(time * 1000)
+      gsap.ticker.add(tick)
+
+      gsap.ticker.lagSmoothing(0)
+
+      lenis.on('scroll', ScrollTrigger.update)
+
+      // Sync on init
+      ScrollTrigger.refresh()
+    }
+
+    init()
 
     return () => {
-      lenis.destroy()
-      gsap.ticker.remove(lenis.raf)
+      active = false
+      if (tick) gsapInstance?.ticker.remove(tick)
+      lenis?.destroy()
+      lenisRef.current = null
     }
   }, [])
 

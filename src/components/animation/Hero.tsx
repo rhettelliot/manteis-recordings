@@ -2,10 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 /* Deterministic bar heights — must match on server and client */
 const FREQ_BARS = Array.from({ length: 48 }, (_, i) => {
@@ -22,55 +18,69 @@ export function Hero() {
 
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: isReducedMotion ? 0 : 0.1 })
 
-      if (!isReducedMotion) {
-        gsap.set('.hero-cube', { opacity: 0, y: 20 })
-        gsap.set('.hero-title-inner', { yPercent: 120, skewY: 5 })
-        gsap.set('.hero-tagline', { opacity: 0, y: 30 })
-        gsap.set('.hero-label-top', { opacity: 0, y: -20 })
-      }
+    let ctx: { revert: () => void } | undefined
+    let active = true
 
-      tl.from('.hero-label-top', {
-        y: isReducedMotion ? 0 : -20,
-        opacity: isReducedMotion ? 1 : 0,
-        duration: isReducedMotion ? 0 : 1,
-        ease: 'power3.out',
-      })
-        .to('.hero-cube', {
-          opacity: 1,
-          y: 0,
-          duration: isReducedMotion ? 0 : 1.2,
-          ease: 'power3.out',
-        }, '-=0.7')
-        .to('.hero-title-inner', {
-          yPercent: 0,
-          skewY: 0,
-          duration: isReducedMotion ? 0 : 1.4,
-          stagger: 0.12,
-          ease: 'power4.out',
-        }, '-=0.8')
-        .to('.hero-tagline', {
-          y: 0,
-          opacity: 1,
+    const init = async () => {
+      const gsap = (await import('gsap')).default
+      if (!active) return
+
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({ delay: isReducedMotion ? 0 : 0.1 })
+
+        if (!isReducedMotion) {
+          gsap.set('.hero-cube', { opacity: 0, y: 20 })
+          gsap.set('.hero-title-inner', { yPercent: 120, skewY: 5 })
+          gsap.set('.hero-tagline', { opacity: 0, y: 30 })
+          gsap.set('.hero-label-top', { opacity: 0, y: -20 })
+        }
+
+        tl.from('.hero-label-top', {
+          y: isReducedMotion ? 0 : -20,
+          opacity: isReducedMotion ? 1 : 0,
           duration: isReducedMotion ? 0 : 1,
           ease: 'power3.out',
-        }, '-=0.8')
-
-      // Scroll indicator bob
-      if (!isReducedMotion) {
-        gsap.to('.hero-scroll-arrow', {
-          y: 8,
-          duration: 1.5,
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true,
         })
-      }
-    }, heroRef)
+          .to('.hero-cube', {
+            opacity: 1,
+            y: 0,
+            duration: isReducedMotion ? 0 : 1.2,
+            ease: 'power3.out',
+          }, '-=0.7')
+          .to('.hero-title-inner', {
+            yPercent: 0,
+            skewY: 0,
+            duration: isReducedMotion ? 0 : 1.4,
+            stagger: 0.12,
+            ease: 'power4.out',
+          }, '-=0.8')
+          .to('.hero-tagline', {
+            y: 0,
+            opacity: 1,
+            duration: isReducedMotion ? 0 : 1,
+            ease: 'power3.out',
+          }, '-=0.8')
 
-    return () => ctx.revert()
+        // Scroll indicator bob
+        if (!isReducedMotion) {
+          gsap.to('.hero-scroll-arrow', {
+            y: 8,
+            duration: 1.5,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+          })
+        }
+      }, heroRef)
+    }
+
+    init()
+
+    return () => {
+      active = false
+      if (ctx) ctx.revert()
+    }
   }, [])
 
   return (
