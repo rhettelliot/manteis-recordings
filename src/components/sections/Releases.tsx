@@ -107,61 +107,84 @@ export function Releases() {
         {/* Catalog grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {grid.map((release) => (
-            <a
-              key={`${filter}-${release.id}`}
-              href={release.hyperfollow}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="group block"
-              aria-label={`Listen to ${release.title} by ${release.artist}, ${release.year}`}
-            >
-              <div className="release-card aspect-square overflow-hidden relative">
-                <Image
-                  src={release.coverArt}
-                  alt={`${release.title} cover art`}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                />
-                {/* Hover reveal — solid scrim, no gradient */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none flex items-center justify-center bg-void/70">
-                  <span
-                    className="font-mono text-[11px] tracking-[0.2em] uppercase px-4 py-2 border"
-                    style={{ borderColor: release.color, color: release.color }}
-                  >
-                    Listen
-                  </span>
-                </div>
-                {/* Catalog number badge */}
-                <div className="absolute top-3 left-3 font-mono text-[9px] tracking-[0.15em] uppercase text-light/55 bg-void/70 px-2 py-1 border border-edge-ghost">
-                  {release.catalogNumber}
-                </div>
-                {/* Year badge */}
-                <div className="absolute top-3 right-3 font-mono text-[9px] tracking-[0.15em] uppercase text-light/55 bg-void/70 px-2 py-1 border border-edge-ghost">
-                  {release.year}
-                </div>
-              </div>
-
-              <div className="mt-3 px-1">
-                <div
-                  className="font-mono text-[9px] tracking-[0.15em] uppercase"
-                  style={{ color: release.color }}
-                >
-                  {release.artist}
-                </div>
-                <h3 className="font-display text-lg font-bold tracking-[-0.01em] text-light group-hover:text-accent transition-colors duration-300 mt-1">
-                  {release.title}
-                </h3>
-                <div className="font-mono text-[10px] text-light-muted mt-1">
-                  {release.year} · {release.tracks} {release.tracks === 1 ? 'track' : 'tracks'}
-                </div>
-              </div>
-            </a>
+            <ReleaseCard key={`${filter}-${release.id}`} release={release} />
           ))}
         </div>
       </div>
 
       <div className="divider-glow max-w-5xl mx-auto mt-32" />
     </section>
+  )
+}
+
+function ReleaseCard({ release }: { release: typeof releases[number] }) {
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const card = cardRef.current
+    if (!card) return
+    const onMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect()
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`)
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`)
+    }
+    card.addEventListener('mousemove', onMove)
+    return () => card.removeEventListener('mousemove', onMove)
+  }, [])
+
+  return (
+    <a
+      href={release.hyperfollow}
+      target="_blank"
+      rel="noreferrer noopener"
+      className="group block"
+      aria-label={`Listen to ${release.title} by ${release.artist}, ${release.year}`}
+    >
+      <div
+        ref={cardRef}
+        className="release-card aspect-square overflow-hidden relative"
+        style={{ '--spotlight-color': release.color } as React.CSSProperties}
+      >
+        <Image
+          src={release.coverArt}
+          alt={`${release.title} cover art`}
+          fill
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+        />
+        {/* Hover reveal — solid scrim, no gradient */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none flex items-center justify-center bg-void/70">
+          <span
+            className="font-mono text-[11px] tracking-[0.2em] uppercase px-4 py-2 border"
+            style={{ borderColor: release.color, color: release.color }}
+          >
+            Listen
+          </span>
+        </div>
+        {/* Catalog number badge */}
+        <div className="absolute top-3 left-3 font-mono text-[9px] tracking-[0.15em] uppercase text-light/55 bg-void/70 px-2 py-1 border border-edge-ghost">
+          {release.catalogNumber}
+        </div>
+        {/* Year badge */}
+        <div className="absolute top-3 right-3 font-mono text-[9px] tracking-[0.15em] uppercase text-light/55 bg-void/70 px-2 py-1 border border-edge-ghost">
+          {release.year}
+        </div>
+      </div>
+
+      <div className="mt-3 px-1">
+        <div
+          className="font-mono text-[9px] tracking-[0.15em] uppercase"
+          style={{ color: release.color }}
+        >
+          {release.artist}
+        </div>
+        <h3 className="font-display text-lg font-bold tracking-[-0.01em] text-light group-hover:text-accent transition-colors duration-300 mt-1">
+          {release.title}
+        </h3>
+        <div className="font-mono text-[10px] text-light-muted mt-1">
+          {release.year} · {release.tracks} {release.tracks === 1 ? 'track' : 'tracks'}
+        </div>
+      </div>
+    </a>
   )
 }

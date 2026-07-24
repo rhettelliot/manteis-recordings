@@ -97,6 +97,31 @@
     background: var(--void-elevated);
     transform: translateY(-2px);
   }
+  .release-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 0px;
+    padding: 1px;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      var(--spotlight-color, var(--accent)) 0%,
+      transparent 40%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-cinematic);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .release-card:hover::before,
+  a:focus-visible .release-card::before {
+    opacity: 1;
+  }
   .release-card:focus-within,
   a:focus-visible .release-card {
     outline: 1px solid var(--accent);
@@ -243,6 +268,20 @@
   @keyframes marquee-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-33.333%); }
+  }
+
+  /* Faster kinetic marquee used inside sections */
+  .marquee-track-fast {
+    display: flex;
+    animation: marquee-scroll-fast 28s linear infinite;
+    width: max-content;
+  }
+  .marquee-track-fast:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee-scroll-fast {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 }
 
