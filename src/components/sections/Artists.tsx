@@ -4,9 +4,28 @@ import { useEffect, useRef } from 'react'
 import { revealOnEnter } from '@/lib/reveal'
 import { artists, releases } from '@/lib/catalog'
 
+const masks = ['hexagon', 'diamond', 'triangle', 'octagon', 'rhombus'] as const
+
+type MaskShape = typeof masks[number]
+
+function clipPathFor(shape: MaskShape): string {
+  switch (shape) {
+    case 'hexagon':
+      return 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+    case 'diamond':
+      return 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)'
+    case 'triangle':
+      return 'polygon(50% 0%, 0% 100%, 100% 100%)'
+    case 'octagon':
+      return 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)'
+    case 'rhombus':
+      return 'polygon(25% 0%, 100% 50%, 75% 100%, 0% 50%)'
+  }
+}
+
 /**
  * The roster — each artist is a parallax tilt card linking out to their dedicated site.
- * The artist's own accent color drives the glow, border, and 3D tilt response.
+ * Geometric masking, concentric frame tunnel, and orbital path curves connecting artists.
  */
 export function Artists() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -19,6 +38,7 @@ export function Artists() {
       disposers.push(await revealOnEnter(root.querySelectorAll('.artists-heading'), { y: 60, duration: 0.8 }))
       disposers.push(await revealOnEnter(root.querySelectorAll('.artist-tilt-card'), { y: 40, duration: 0.6, stagger: 0.08 }))
       disposers.push(await revealOnEnter(root.querySelectorAll('.catalog-marquee'), { y: 20, duration: 0.6 }))
+      disposers.push(await revealOnEnter(root.querySelectorAll('.orbital-paths'), { y: 20, duration: 0.8 }))
     })()
     return () => disposers.forEach((d) => d())
   }, [])
@@ -38,6 +58,34 @@ export function Artists() {
           Five artists, each with a dedicated site. Select a card to enter their world.
         </p>
 
+        {/* Orbital path curves connecting the 5 artists */}
+        <div className="orbital-paths relative w-full h-24 md:h-32 mb-8 -mt-4" aria-hidden="true">
+          <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="orbital-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#FDFCDC" stopOpacity="0.02" />
+                <stop offset="50%" stopColor="#FF6EC7" stopOpacity="0.28" />
+                <stop offset="100%" stopColor="#FDFCDC" stopOpacity="0.02" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M0,60 C150,10 350,110 500,60 S850,10 1000,60"
+              fill="none"
+              stroke="url(#orbital-grad)"
+              strokeWidth="1.5"
+              vectorEffect="non-scaling-stroke"
+            />
+            <path
+              d="M0,75 C120,120 300,20 500,75 S780,120 1000,75"
+              fill="none"
+              stroke="url(#orbital-grad)"
+              strokeWidth="1"
+              strokeOpacity="0.5"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
+        </div>
+
         {/* Kinetic catalog-number marquee */}
         <div className="catalog-marquee relative mb-16 -mx-6 md:-mx-12 border-y border-edge-faint py-4 overflow-hidden">
           <div className="marquee-track-fast flex w-max">
@@ -56,7 +104,7 @@ export function Artists() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {artists.map((artist, i) => (
-            <TiltArtistCard key={artist.name} artist={artist} index={i} />
+            <TiltArtistCard key={artist.name} artist={artist} index={i} shape={masks[i % masks.length]} />
           ))}
         </div>
       </div>
@@ -76,9 +124,10 @@ interface TiltArtistCardProps {
     tagline: string
   }
   index: number
+  shape: MaskShape
 }
 
-function TiltArtistCard({ artist, index }: TiltArtistCardProps) {
+function TiltArtistCard({ artist, index, shape }: TiltArtistCardProps) {
   const cardRef = useRef<HTMLAnchorElement>(null)
   const glowRef = useRef<HTMLSpanElement>(null)
 
@@ -150,8 +199,48 @@ function TiltArtistCard({ artist, index }: TiltArtistCardProps) {
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
       />
 
+      {/* Concentric frame tunnel on artist portraits */}
+      <div className="relative w-full aspect-[16/10] mb-8 overflow-hidden flex items-center justify-center">
+        <div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            background:
+              'repeating-radial-gradient(circle at center, transparent 0px, transparent 18px, rgba(253,252,220,0.04) 19px, transparent 20px)',
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-[12%] md:inset-[14%] border border-edge-ghost"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-[22%] md:inset-[24%] border border-edge-ghost"
+          aria-hidden="true"
+        />
+        <div
+          className="relative w-[46%] md:w-[42%] aspect-square transition-transform duration-700 group-hover:scale-105"
+          style={{
+            clipPath: clipPathFor(shape),
+            background: `linear-gradient(135deg, ${artist.color}22 0%, ${artist.color}05 100%)`,
+          }}
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              clipPath: clipPathFor(shape),
+              background: artist.color,
+              opacity: 0.12,
+            }}
+            aria-hidden="true"
+          />
+          <span className="absolute inset-0 flex items-center justify-center font-mono text-[9px] tracking-[0.2em] uppercase text-light/70">
+            {artist.name}
+          </span>
+        </div>
+      </div>
+
       {/* Top index / catalog strip */}
-      <div className="relative flex items-center justify-between mb-8">
+      <div className="relative flex items-center justify-between mb-6">
         <span
           aria-hidden="true"
           className="font-mono text-[10px] tracking-[0.2em] uppercase px-2 py-[3px] border"

@@ -10,8 +10,8 @@ const FREQ_BARS = Array.from({ length: 48 }, (_, i) => {
 })
 
 /**
- * Label hero — the brand cube and the label name in full typographic force.
- * A faint frequency strip grounds the void; the signal stays rare.
+ * Wireframe grid tunnel hero — perspective grid receding into the void,
+ * brand cube at the vanishing point, cream typography, cream frequency floor.
  */
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -34,6 +34,7 @@ export function Hero() {
           gsap.set('.hero-title-inner', { yPercent: 120, skewY: 5 })
           gsap.set('.hero-tagline', { opacity: 0, y: 30 })
           gsap.set('.hero-label-top', { opacity: 0, y: -20 })
+          gsap.set('.grid-tunnel', { opacity: 0, scale: 1.08 })
         }
 
         tl.from('.hero-label-top', {
@@ -42,12 +43,18 @@ export function Hero() {
           duration: isReducedMotion ? 0 : 1,
           ease: 'power3.out',
         })
+          .to('.grid-tunnel', {
+            opacity: 1,
+            scale: 1,
+            duration: isReducedMotion ? 0 : 1.6,
+            ease: 'power2.out',
+          }, '-=0.8')
           .to('.hero-cube', {
             opacity: 1,
             y: 0,
             duration: isReducedMotion ? 0 : 1.2,
             ease: 'power3.out',
-          }, '-=0.7')
+          }, '-=1.1')
           .to('.hero-title-inner', {
             yPercent: 0,
             skewY: 0,
@@ -89,12 +96,68 @@ export function Hero() {
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       aria-label="Manteis Recordings"
     >
-      {/* Skeletal perspective grid */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="cyber-grid" />
+      {/* Wireframe grid tunnel — perspective grid receding into void */}
+      <div className="grid-tunnel absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="tunnel-fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#FDFCDC" stopOpacity="0.22" />
+              <stop offset="35%" stopColor="#FDFCDC" stopOpacity="0.06" />
+              <stop offset="100%" stopColor="#FDFCDC" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {/* Receding horizontal lines */}
+          {[...Array(12)].map((_, i) => {
+            const y = 8 + i * 8 // % from top
+            const opacity = 0.28 - i * 0.022
+            return (
+              <line
+                key={`h-${i}`}
+                x1="0"
+                y1={`${y}%`}
+                x2="100%"
+                y2={`${y}%`}
+                stroke="#FDFCDC"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+                style={{ opacity: Math.max(opacity, 0.04) }}
+              />
+            )
+          })}
+          {/* Vertical lines converging toward vanishing point */}
+          {[...Array(17)].map((_, i) => {
+            const x = 5 + i * 5.625 // 0..100
+            const lean = (x - 50) * 0.35
+            return (
+              <line
+                key={`v-${i}`}
+                x1={`${x}%`}
+                y1="100%"
+                x2={`${x + lean}%`}
+                y2="28%"
+                stroke="#FDFCDC"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+                style={{ opacity: 0.06 + Math.abs(x - 50) * 0.004 }}
+              />
+            )
+          })}
+          {/* Floor plane horizon accent */}
+          <line x1="0" y1="28%" x2="100%" y2="28%" stroke="url(#tunnel-fade)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+        </svg>
       </div>
 
-      {/* Frequency strip — faint spectrum along the floor of the void */}
+      {/* Vignette void */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background:
+            'radial-gradient(circle at 50% 35%, transparent 0%, transparent 35%, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.95) 100%)',
+        }}
+      />
+
+      {/* Frequency strip — faint cream spectrum along the floor of the void */}
       <div
         className="absolute bottom-0 left-0 right-0 h-24 flex items-end justify-center gap-[6px] pointer-events-none opacity-60"
         aria-hidden="true"

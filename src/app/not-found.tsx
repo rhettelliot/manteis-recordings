@@ -6,19 +6,19 @@ export default function NotFound() {
       className="min-h-screen flex flex-col items-center justify-center text-center px-6"
       style={{ backgroundColor: '#000000' }}
     >
-      <p className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: '#FF007F' }}>
+      <p className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: '#FF6EC7' }}>
         404 — No such frequency
       </p>
-      <h1 className="font-display text-4xl md:text-6xl mt-6 mb-4" style={{ color: '#F0F0F0' }}>
+      <h1 className="font-display text-4xl md:text-6xl mt-6 mb-4" style={{ color: '#FDFCDC' }}>
         Page not found
       </h1>
-      <p className="font-body text-sm mb-12" style={{ color: '#888888' }}>
+      <p className="font-body text-sm mb-12" style={{ color: '#BFBBA3' }}>
         This page is not in the catalog.
       </p>
       <Link
         href="/"
         className="font-mono text-[10px] tracking-[0.25em] uppercase px-8 py-4 border transition-colors duration-200"
-        style={{ borderColor: '#FF007F', color: '#FF007F' }}
+        style={{ borderColor: '#FF6EC7', color: '#FF6EC7' }}
       >
         Return to the label
       </Link>

@@ -15,23 +15,23 @@ const config: Config = {
           soft: '#0C0C0C',
           warm: '#0D0B08',
         },
-        /* The Signal — Neon Pink, the label's voice (Music: #FF007F) */
+        /* The Signal — Neon Pink, the label's voice (Music: #FF6EC7) */
         accent: {
-          DEFAULT: '#FF007F',
-          dim: 'rgba(255, 0, 127, 0.10)',
-          glow: 'rgba(255, 0, 127, 0.25)',
-          border: 'rgba(255, 0, 127, 0.35)',
+          DEFAULT: '#FF6EC7',
+          dim: 'rgba(255, 110, 199, 0.10)',
+          glow: 'rgba(255, 110, 199, 0.25)',
+          border: 'rgba(255, 110, 199, 0.35)',
         },
-        /* Typography & edges */
-        light: '#FFFFFF',
-        'light-dim': '#999999',
-        'light-muted': '#767676',
+        /* Typography & edges — cream replaces pure white */
+        light: '#FDFCDC',
+        'light-dim': '#BFBBA3',
+        'light-muted': '#8F8C7A',
         edge: {
-          ghost: 'rgba(255,255,255,0.04)',
-          faint: 'rgba(255,255,255,0.08)',
-          subtle: 'rgba(255,255,255,0.12)',
-          clear: 'rgba(255,255,255,0.22)',
-          bright: 'rgba(255,255,255,0.45)',
+          ghost: 'rgba(253,252,220,0.04)',
+          faint: 'rgba(253,252,220,0.08)',
+          subtle: 'rgba(253,252,220,0.12)',
+          clear: 'rgba(253,252,220,0.22)',
+          bright: 'rgba(253,252,220,0.45)',
         },
       },
       fontFamily: {

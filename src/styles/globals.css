@@ -10,23 +10,23 @@
   --void-float: #1C1C1C;
   --void-input: #0F0F0F;
 
-  /* The Signal — Neon Pink, the label's voice (Music: #FF007F) */
-  --accent: #FF007F;
-  --accent-dim: rgba(255, 0, 127, 0.10);
-  --accent-glow: rgba(255, 0, 127, 0.25);
-  --accent-border: rgba(255, 0, 127, 0.35);
+  /* The Signal — Neon Pink, the label's voice (Music: #FF6EC7) */
+  --accent: #FF6EC7;
+  --accent-dim: rgba(255, 110, 199, 0.10);
+  --accent-glow: rgba(255, 110, 199, 0.25);
+  --accent-border: rgba(255, 110, 199, 0.35);
 
   /* The Edge — surfaces lit at their rim */
-  --edge-ghost: rgba(255, 255, 255, 0.04);
-  --edge-faint: rgba(255, 255, 255, 0.08);
-  --edge-subtle: rgba(255, 255, 255, 0.12);
-  --edge-clear: rgba(255, 255, 255, 0.22);
-  --edge-bright: rgba(255, 255, 255, 0.45);
+  --edge-ghost: rgba(253, 252, 220, 0.04);
+  --edge-faint: rgba(253, 252, 220, 0.08);
+  --edge-subtle: rgba(253, 252, 220, 0.12);
+  --edge-clear: rgba(253, 252, 220, 0.22);
+  --edge-bright: rgba(253, 252, 220, 0.45);
 
-  /* Typography & edges */
-  --light: #FFFFFF;
-  --light-dim: #999999;
-  --light-muted: #767676;
+  /* Typography & edges — cream replaces pure white */
+  --light: #FDFCDC;
+  --light-dim: #BFBBA3;
+  --light-muted: #8F8C7A;
 
   /* Motion */
   --duration-fast: 0.15s;
@@ -39,6 +39,10 @@
   --ease-enter: cubic-bezier(0.00, 0.00, 0.25, 1.00);
   --ease-exit: cubic-bezier(0.75, 0.00, 1.00, 1.00);
   --ease-drift: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html {
+  color-scheme: dark;
 }
 
 @layer base {
@@ -136,13 +140,13 @@
     transform: scale(0.97);
   }
   .btn-snap:focus-visible {
-    outline: 1px solid #FF007F;
+    outline: 1px solid #FF6EC7;
     outline-offset: 3px;
   }
 
   a:focus-visible,
   button:focus-visible {
-    outline: 1px solid #FF007F;
+    outline: 1px solid #FF6EC7;
     outline-offset: 3px;
   }
   .divider-glow {
@@ -346,8 +350,50 @@
 }
 /* Keyboard navigation — accent outline, only for keyboard focus */
 :focus-visible {
-  outline: 1px solid #FF007F;
+  outline: 1px solid #FF6EC7;
   outline-offset: 3px;
+}
+
+/* Scanline pattern overlay on release covers */
+.scanline-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(253, 252, 220, 0.06) 2px,
+    rgba(253, 252, 220, 0.06) 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Floating element shadow for release covers */
+.release-cover-shadow {
+  border: 1px solid var(--edge-faint);
+  transition:
+    border-color var(--duration-fast) var(--ease-cinematic),
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+.release-cover-shadow:hover,
+a:focus-visible .release-cover-shadow {
+  border-color: var(--edge-clear);
+  transform: translateY(-4px);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(255, 110, 199, 0.08);
+}
+
+/* MASSIVE catalog number as section anchor */
+.catalog-anchor-number {
+  font-size: clamp(5rem, 14vw, 12rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* Wireframe grid tunnel container */
+.grid-tunnel svg {
+  transform: perspective(700px) rotateX(42deg) scale(1.12);
+  transform-origin: 50% 20%;
 }
 
 .skip-link {
