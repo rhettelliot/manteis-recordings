@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 :root {
+  --signal-pink: #FF6EC7;
+  --signal-pink-dim: rgba(255, 110, 199, 0.10);
+  --signal-pink-glow: rgba(255, 110, 199, 0.25);
+  --signal-pink-border: rgba(255, 110, 199, 0.35);
+}
+
+:root {
   /* The Void — depth carved from absolute black */
   --void: #000000;
   --void-raised: #0C0C0C;
@@ -83,14 +90,37 @@
     @apply text-base text-light-dim max-w-[520px] mt-4 leading-relaxed;
   }
 
-  /* Release plate — vinyl-inspired card */
   .release-card {
     background: var(--void-raised);
     border: 1px solid var(--edge-faint);
-    transition: 
+    transition:
       border-color var(--duration-fast) var(--ease-cinematic),
       background-color var(--duration-fast) var(--ease-cinematic),
       transform var(--duration-normal) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+  .release-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out);
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(255, 110, 199, 0.08) 20px,
+      rgba(255, 110, 199, 0.08) 21px,
+      transparent 21px,
+      transparent 40px
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .release-card:hover::before {
+    opacity: 1;
   }
   .release-card:hover {
     border-color: var(--edge-clear);
@@ -176,10 +206,107 @@
     -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 70%);
   }
 
-  /* Release number badge */
+/* Chroma grid — animated signal-pink gradient borders */
+.chroma-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(to right, transparent 0%, transparent 48%, var(--edge-faint) 49%, var(--edge-faint) 51%, transparent 52%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, transparent 48%, var(--edge-faint) 49%, var(--edge-faint) 51%, transparent 52%, transparent 100%);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 80%);
+}
+.chroma-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 40px,
+    rgba(255, 110, 199, 0.45) 40px,
+    rgba(255, 110, 199, 0.45) 41px,
+    transparent 41px,
+    transparent 80px
+  );
+  animation: chroma-sweep 5s linear infinite;
+  animation-play-state: var(--chroma-play, running);
+  mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 75%);
+}
 
+/* Stronger chroma treatment for releases */
+.release-chroma {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 30px,
+    rgba(255, 110, 199, 0.12) 30px,
+    rgba(255, 110, 199, 0.12) 31px,
+    transparent 31px,
+    transparent 60px
+  ),
+  repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 30px,
+    rgba(255, 110, 199, 0.08) 30px,
+    rgba(255, 110, 199, 0.08) 31px,
+    transparent 31px,
+    transparent 60px
+  );
+  animation: chroma-sweep 3s linear infinite;
+  mix-blend-mode: screen;
+}
+
+/* Spotlight border that follows the cursor */
+.spotlight-border {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  z-index: 4;
+  background: radial-gradient(
+    400px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgba(255, 110, 199, 0.55),
+    transparent 60%
+  );
+  border: 1px solid transparent;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1px;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+/* Strobe overlay */
+.scroll-strobe {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 36;
+  opacity: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 110, 199, 0.55) 0%, transparent 55%);
+  mix-blend-mode: screen;
+  will-change: opacity;
+}
   .catalog-badge {
     @apply font-mono text-[9px] tracking-[0.2em] uppercase text-light-muted;
+  }
+
+  @keyframes chroma-sweep {
+    0% { transform: translateX(-80px); opacity: 0.25; }
+    50% { opacity: 1; }
+    100% { transform: translateX(0); opacity: 0.25; }
   }
 
   /* Animated vinyl spin */

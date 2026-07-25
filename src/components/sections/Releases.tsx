@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { revealOnEnter } from '@/lib/reveal'
 import { releases, artists } from '@/lib/catalog'
 
+import { GlitchCover } from '@/components/ui/GlitchCover'
+
 const featured = releases[0]
 
 export function Releases() {
@@ -45,14 +47,16 @@ export function Releases() {
                 className="relative w-full md:w-1/2 aspect-square overflow-hidden"
                 style={{ border: '1px solid var(--edge-faint)' }}
               >
-                <Image
-                  src={featured.coverArt}
-                  alt={`${featured.title} cover art`}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
+                <GlitchCover release={featured}>
+                  <Image
+                    src={featured.coverArt}
+                    alt={`${featured.title} cover art`}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+                </GlitchCover>
               </div>
 
               <div className="flex-1 py-4 md:py-8">
@@ -116,13 +120,15 @@ export function Releases() {
               aria-label={`Listen to ${release.title} by ${release.artist}, ${release.year}`}
             >
               <div className="release-card aspect-square overflow-hidden relative">
-                <Image
-                  src={release.coverArt}
-                  alt={`${release.title} cover art`}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                />
+                <GlitchCover release={release}>
+                  <Image
+                    src={release.coverArt}
+                    alt={`${release.title} cover art`}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  />
+                </GlitchCover>
                 {/* Hover reveal — solid scrim, no gradient */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none flex items-center justify-center bg-void/70">
                   <span

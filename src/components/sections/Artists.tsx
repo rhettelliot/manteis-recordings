@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { revealOnEnter } from '@/lib/reveal'
 import { artists } from '@/lib/catalog'
+import { ArtistHoverTrailLayer } from './ArtistHoverTrail'
 
 /**
  * The roster — each artist is a hub row linking out to their dedicated site.
@@ -23,8 +24,10 @@ export function Artists() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="artists" className="py-32 md:py-48">
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
+    <section ref={sectionRef} id="artists" className="py-32 md:py-48 relative">
+      <ArtistHoverTrailLayer />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
         <div className="section-label mb-20">Roster /</div>
 
         <h2 className="artists-heading font-display text-4xl md:text-6xl font-bold leading-[1.02] tracking-[-0.03em] mb-6">
