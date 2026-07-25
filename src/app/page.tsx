@@ -4,9 +4,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { SiteShell } from '@/components/layout/SmoothScroll'
 import { Gatekeeper } from '@/components/layout/Gatekeeper'
 import { Navigation } from '@/components/layout/Navigation'
-import { GooeyMenu } from '@/components/layout/GooeyMenu'
-import { ChromaGrid } from '@/components/layout/ChromaGrid'
-import { ScrollStrobe } from '@/components/layout/ScrollStrobe'
+
 import { ParallaxHero } from '@/components/animation/ParallaxHero'
 import { Releases } from '@/components/sections/Releases'
 import { CoverflowCarousel } from '@/components/sections/CoverflowCarousel'
@@ -37,9 +35,6 @@ export default function Home() {
 
   return (
     <SiteShell>
-      <ChromaGrid />
-      <ScrollStrobe />
-      <GooeyMenu />
       <Navigation />
       <main id="main-content" className="relative w-full" tabIndex={-1}>
         {/* Sticky Hero */}
