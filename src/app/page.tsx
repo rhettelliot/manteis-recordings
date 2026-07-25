@@ -9,12 +9,9 @@ import { ChromaGrid } from '@/components/layout/ChromaGrid'
 import { ScrollStrobe } from '@/components/layout/ScrollStrobe'
 import { ParallaxHero } from '@/components/animation/ParallaxHero'
 import { Releases } from '@/components/sections/Releases'
-import { ReleaseSwipeStack } from '@/components/sections/ReleaseSwipeStack'
 import { CoverflowCarousel } from '@/components/sections/CoverflowCarousel'
-import { HorizontalReleases } from '@/components/sections/HorizontalReleases'
 import { StreamingMarquee } from '@/components/sections/StreamingMarquee'
 import { Artists } from '@/components/sections/Artists'
-import { MagneticArtistCards } from '@/components/sections/MagneticArtistCards'
 import { Philosophy } from '@/components/sections/Philosophy'
 import { CTASection } from '@/components/ui/CTASection'
 import { Footer } from '@/components/layout/Footer'
@@ -53,14 +50,19 @@ export default function Home() {
         {/* Content scrolls OVER the Hero */}
         <div className="relative z-10 bg-void w-full">
           <div className="divider-glow" />
-          <ReleaseSwipeStack />
+
+          {/* Single catalog teaser — coverflow only */}
           <CoverflowCarousel />
+
+          {/* Single streaming marquee */}
           <StreamingMarquee />
+
+          {/* Single browsable catalog with filtering */}
           <Releases />
-          <HorizontalReleases />
-          <StreamingMarquee />
+
+          {/* Single roster — artist list only */}
           <Artists />
-          <MagneticArtistCards />
+
           <Philosophy />
           <CTASection />
           <Footer />
