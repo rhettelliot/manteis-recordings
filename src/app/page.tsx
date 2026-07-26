@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
 import { SiteShell } from '@/components/layout/SmoothScroll'
 
 import { Navigation } from '@/components/layout/Navigation'
