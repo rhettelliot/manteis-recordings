@@ -7,7 +7,7 @@ const config: Config = {
       colors: {
         /* The Void — true black, depth via surface lightness */
         void: {
-          DEFAULT: '#000000',
+          DEFAULT: '#0D0F12',
           raised: '#0C0C0C',
           elevated: '#141414',
           float: '#1C1C1C',
@@ -15,9 +15,9 @@ const config: Config = {
           soft: '#0C0C0C',
           warm: '#0D0B08',
         },
-        /* The Signal — Neon Pink, the label's voice (Music: #FF6EC7) */
+        /* The Signal — Neon Pink, the label's voice (Music: #FF5500) */
         accent: {
-          DEFAULT: '#FF6EC7',
+          DEFAULT: '#FF5500',
           dim: 'rgba(255, 110, 199, 0.10)',
           glow: 'rgba(255, 110, 199, 0.25)',
           border: 'rgba(255, 110, 199, 0.35)',
