@@ -33,9 +33,9 @@ export function Artists() {
         <h2 className="artists-heading font-display text-4xl md:text-6xl font-bold leading-[1.02] tracking-[-0.03em] mb-6">
           <span className="hollow-text">Artists</span>
         </h2>
-        <p className="artists-heading font-mono text-[11px] tracking-[0.15em] uppercase text-light-muted mb-16 max-w-md">
-          Five artists, each with a dedicated site. Select a row to enter their world.
-        </p>
+        <h2 className="artists-heading font-display text-[clamp(2.5rem,8vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.03em] mb-6">
+          <span className="hollow-text">Artists</span>
+        </h2>
 
         <div className="border-t border-edge-faint">
           {artists.map((artist, i) => (
@@ -45,23 +45,21 @@ export function Artists() {
               target="_blank"
               rel="noreferrer noopener"
               aria-label={`Visit the ${artist.name} website`}
-              className="artist-row group grid grid-cols-[auto_1fr_auto] gap-x-4 md:gap-x-8 items-center py-8 md:py-10 border-b border-edge-faint transition-colors duration-300 cursor-pointer relative pl-4 md:pl-6"
+              className="artist-row group grid grid-cols-[auto_1fr_auto] gap-x-4 md:gap-x-8 items-center py-7 md:py-10 border-b border-edge-faint transition-colors duration-300 cursor-pointer relative pl-4 md:pl-6"
             >
-              {/* Accent rail — the artist's color, their row only */}
+              {/* Accent rail */}
               <span
                 aria-hidden="true"
                 className="absolute left-0 top-0 bottom-0 w-[2px] scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-500"
                 style={{ background: artist.color }}
               />
 
-              {/* Index */}
-              <span className="font-mono text-[10px] tracking-[0.2em] text-light-muted self-start pt-2">
+              <span className="font-mono text-[10px] tracking-[0.2em] text-light-muted self-start pt-2 md:pt-0">
                 {String(i + 1).padStart(2, '0')}
               </span>
 
-              {/* Name + meta */}
               <div className="min-w-0">
-                <h3 className="font-display text-2xl md:text-4xl font-bold tracking-[-0.02em] text-light transition-transform duration-500 group-hover:translate-x-2">
+                <h3 className="font-display text-xl md:text-3xl lg:text-4xl font-bold tracking-[-0.02em] text-light transition-transform duration-500 group-hover:translate-x-2">
                   {artist.name}
                 </h3>
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2">
