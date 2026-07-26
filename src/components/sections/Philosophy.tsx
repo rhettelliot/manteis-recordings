@@ -115,7 +115,7 @@ export function Philosophy() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="philosophy" className="relative min-h-screen py-32 md:py-48">
+    <section ref={sectionRef} id="philosophy" className="relative py-24 md:py-32">
       <div
         ref={sequenceRef}
         className="max-w-4xl mx-auto px-6 md:px-10"
@@ -128,7 +128,7 @@ export function Philosophy() {
             <p
               key={i}
               className={`manifesto-line font-display text-[clamp(1.5rem,5vw,3rem)] leading-[1.15] tracking-[-0.02em] ${
-                i === 0 ? 'font-bold text-light' : 'font-light text-light-dim'
+                i === 0 ? 'font-bold text-light' : 'font-light text-light-muted'
               }`}
             >
               {line}
@@ -150,7 +150,7 @@ export function Philosophy() {
         </div>
 
         <div className="philosophy-systems mt-24 border-t border-edge-faint pt-10">
-          <p className="text-base md:text-lg text-light-dim leading-relaxed max-w-xl">
+          <p className="text-base md:text-lg text-light-muted leading-relaxed max-w-xl">
             Manteis Recordings shares one philosophy with{' '}
             <a
               href="https://manteis.systems"

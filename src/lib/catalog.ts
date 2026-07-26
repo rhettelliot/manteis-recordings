@@ -27,12 +27,12 @@ export interface Release {
 
 /* Per-artist accent colors — used on that artist's row/card ONLY */
 export const ARTIST_COLORS: Record<string, string> = {
-  'Red Shift Mantra': '#007AFF',
-  'The Manteis Project': '#9F67F5',
-  'Thesan Musique': '#00FFDD',
-  'Brindavan Gardens': '#D4A843',
-  'Bethany Pritchett': '#B88A9A',
-}
+  'Red Shift Mantra': '#FF5500',
+  'The Manteis Project': '#FF5500',
+  'Thesan Musique': '#FF5500',
+  'Brindavan Gardens': '#FF5500',
+  'Bethany Pritchett': '#FF5500',
+};
 
 export const artists: Artist[] = [
   { name: 'Red Shift Mantra', url: 'https://redshiftmantra.vercel.app', role: 'Electronic / Synthwave', releases: 2, color: ARTIST_COLORS['Red Shift Mantra'], tagline: 'Cosmic pressure' },
