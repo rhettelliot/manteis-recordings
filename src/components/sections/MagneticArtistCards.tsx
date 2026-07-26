@@ -16,7 +16,7 @@ import { artists } from '@/lib/catalog'
 export function MagneticArtistCards() {
   return (
     <section id="artists" className="py-32 md:py-48 relative z-10">
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="section-label mb-20">Roster /</div>
 
         <h2 className="font-display text-4xl md:text-6xl font-bold leading-[1.02] tracking-[-0.03em] mb-6">
@@ -120,7 +120,7 @@ function MagneticCard({ artist }: { artist: typeof artists[number] }) {
             style={{ color: artist.color, borderColor: `${artist.color}59` }}>
             {artist.releases} {artist.releases === 1 ? 'release' : 'releases'}
           </span>
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-light-muted group-hover:text-light transition-colors duration-300">
+          <span className="font-mono text-[10px] tracking-[0.2em] uppercase whitespace-nowrap text-light-muted group-hover:text-light transition-colors duration-300">
             Visit →
           </span>
         </div>

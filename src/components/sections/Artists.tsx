@@ -27,12 +27,9 @@ export function Artists() {
     <section ref={sectionRef} id="artists" className="py-32 md:py-48 relative">
       <ArtistHoverTrailLayer />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
         <div className="section-label mb-20">Roster /</div>
 
-        <h2 className="artists-heading font-display text-4xl md:text-6xl font-bold leading-[1.02] tracking-[-0.03em] mb-6">
-          <span className="hollow-text">Artists</span>
-        </h2>
         <h2 className="artists-heading font-display text-[clamp(2.5rem,8vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.03em] mb-6">
           <span className="hollow-text">Artists</span>
         </h2>
@@ -45,7 +42,7 @@ export function Artists() {
               target="_blank"
               rel="noreferrer noopener"
               aria-label={`Visit the ${artist.name} website`}
-              className="artist-row group grid grid-cols-[auto_1fr_auto] gap-x-4 md:gap-x-8 items-center py-7 md:py-10 border-b border-edge-faint transition-colors duration-300 cursor-pointer relative pl-4 md:pl-6"
+              className="artist-row group grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-4 md:gap-x-8 items-start md:items-center py-7 md:py-10 border-b border-edge-faint transition-colors duration-300 cursor-pointer relative pl-4 md:pl-6"
             >
               {/* Accent rail */}
               <span
@@ -54,12 +51,12 @@ export function Artists() {
                 style={{ background: artist.color }}
               />
 
-              <span className="font-mono text-[10px] tracking-[0.2em] text-light-muted self-start pt-2 md:pt-0">
+              <span className="font-mono text-[10px] tracking-[0.2em] text-light-muted self-start pt-2 md:pt-0 order-first md:order-none">
                 {String(i + 1).padStart(2, '0')}
               </span>
 
               <div className="min-w-0">
-                <h3 className="font-display text-xl md:text-3xl lg:text-4xl font-bold tracking-[-0.02em] text-light transition-transform duration-500 group-hover:translate-x-2">
+                <h3 className="font-display text-[clamp(1.5rem,5vw,2.25rem)] font-bold tracking-[-0.02em] text-light transition-transform duration-500 group-hover:translate-x-2">
                   {artist.name}
                 </h3>
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2">
@@ -72,8 +69,8 @@ export function Artists() {
                   <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted">
                     {artist.releases} {artist.releases === 1 ? 'release' : 'releases'}
                   </span>
-                  <span className="font-mono text-[10px] text-light-muted/40">·</span>
-                  <span className="font-mono text-[10px] tracking-[0.08em] text-light-dim">
+                  <span className="font-mono text-[10px] text-light-muted/40 hidden md:inline">·</span>
+                  <span className="font-mono text-[10px] tracking-[0.08em] text-light-dim block md:inline w-full md:w-auto">
                     {artist.tagline}
                   </span>
                 </div>
@@ -81,7 +78,7 @@ export function Artists() {
 
               {/* Visit site — visible on touch, slides in on hover */}
               <span
-                className="font-mono text-[10px] tracking-[0.2em] uppercase whitespace-nowrap text-light-muted md:opacity-40 group-hover:opacity-100 md:-translate-x-2 group-hover:translate-x-0 transition-all duration-300 group-hover:text-light"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase whitespace-nowrap text-light-muted md:opacity-40 group-hover:opacity-100 md:-translate-x-2 group-hover:translate-x-0 transition-all duration-300 group-hover:text-light self-start md:self-center mt-2 md:mt-0"
               >
                 Visit Site →
               </span>

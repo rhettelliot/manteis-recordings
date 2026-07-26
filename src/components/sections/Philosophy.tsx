@@ -118,7 +118,7 @@ export function Philosophy() {
     <section ref={sectionRef} id="philosophy" className="relative min-h-screen py-32 md:py-48">
       <div
         ref={sequenceRef}
-        className="max-w-4xl mx-auto px-6 md:px-12"
+        className="max-w-4xl mx-auto px-6 md:px-10"
         style={{ '--sequence-frame': '0' } as React.CSSProperties}
       >
         <div className="section-label mb-20">Manifesto /</div>
@@ -127,7 +127,7 @@ export function Philosophy() {
           {manifesto.map((line, i) => (
             <p
               key={i}
-              className={`manifesto-line font-display text-2xl md:text-4xl lg:text-5xl leading-[1.15] tracking-[-0.02em] ${
+              className={`manifesto-line font-display text-[clamp(1.5rem,5vw,3rem)] leading-[1.15] tracking-[-0.02em] ${
                 i === 0 ? 'font-bold text-light' : 'font-light text-light-dim'
               }`}
             >
@@ -136,13 +136,13 @@ export function Philosophy() {
           ))}
         </div>
 
-        <div className="grid grid-cols-3 gap-8 mt-24 max-w-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-24 max-w-lg">
           {stats.map((stat) => (
             <div key={stat.label} className="philosophy-stat">
               <div className="font-mono text-[10px] font-bold tracking-[0.18em] uppercase text-light-muted mb-2">
                 {stat.label}
               </div>
-              <div className="stat-value font-display text-5xl md:text-6xl font-light tracking-[-0.03em] leading-none text-light">
+              <div className="stat-value font-display text-[clamp(3rem,10vw,3.75rem)] font-light tracking-[-0.03em] leading-none text-light">
                 {stat.value}
               </div>
             </div>

@@ -23,7 +23,7 @@ export function StreamingMarquee() {
     <section className="py-14 md:py-20 overflow-hidden border-y border-edge-faint bg-void relative z-10">
       <div className="group flex whitespace-nowrap">
         <motion.div
-          className="flex items-center gap-12 md:gap-16"
+          className="flex items-center gap-8 md:gap-16"
           animate={{ x: ['0%', '-50%'] }}
           transition={{
             x: {
@@ -41,7 +41,7 @@ export function StreamingMarquee() {
               href={platform.url}
               target="_blank"
               rel="noreferrer noopener"
-              className="font-mono text-xs md:text-sm tracking-[0.3em] uppercase text-light-muted hover:text-accent transition-colors duration-300"
+              className="font-mono text-base md:text-sm tracking-[0.3em] uppercase text-light-muted hover:text-accent transition-colors duration-300 min-h-[44px] flex items-center"
             >
               {platform.name}
             </a>

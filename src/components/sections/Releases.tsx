@@ -30,7 +30,7 @@ export function Releases() {
 
   return (
     <section ref={sectionRef} id="releases" className="py-32 md:py-48">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="section-label mb-20">Catalog /</div>
 
         {/* Latest release — featured, large */}
@@ -97,7 +97,7 @@ export function Releases() {
               key={name}
               onClick={() => setFilter(name)}
               aria-pressed={filter === name}
-              className={`font-mono text-[10px] tracking-[0.2em] uppercase pb-1 border-b transition-colors duration-300 ${
+              className={`font-mono text-[10px] tracking-[0.2em] uppercase pb-1 border-b transition-colors duration-300 min-h-[44px] px-2 flex items-center ${
                 filter === name
                   ? 'text-accent border-accent'
                   : 'text-light-muted border-transparent hover:text-light'

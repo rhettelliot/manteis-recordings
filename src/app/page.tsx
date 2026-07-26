@@ -36,9 +36,9 @@ export default function Home() {
   return (
     <SiteShell>
       <Navigation />
-      <main id="main-content" className="relative w-full" tabIndex={-1}>
+      <main id="main-content" className="relative w-full overflow-x-hidden" tabIndex={-1}>
         {/* Sticky Hero */}
-        <div className="sticky top-0 w-full h-screen overflow-hidden z-0">
+        <div className="sticky top-0 w-full h-screen overflow-hidden z-0 pt-16 md:pt-0">
           <ParallaxHero />
         </div>
 

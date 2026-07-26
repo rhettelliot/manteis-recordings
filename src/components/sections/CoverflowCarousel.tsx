@@ -86,7 +86,7 @@ export function CoverflowCarousel() {
               key={i}
               onClick={() => setActiveIndex(i)}
               aria-label={`Go to release ${i + 1}`}
-              className={`w-2 h-2 rounded-full transition-colors duration-300 ${i === activeIndex ? 'bg-accent' : 'bg-edge-subtle hover:bg-edge-clear'}`}
+              className={`w-3 h-3 rounded-full transition-colors duration-300 ${i === activeIndex ? 'bg-accent' : 'bg-edge-subtle hover:bg-edge-clear'}`}
             />
           ))}
         </div>
@@ -94,14 +94,14 @@ export function CoverflowCarousel() {
         <div className="absolute bottom-4 right-8 flex gap-3">
           <button
             onClick={() => setActiveIndex((i) => Math.max(i - 1, 0))}
-            className="w-10 h-10 border border-edge-faint rounded-full text-light/60 hover:text-light hover:border-accent transition-colors"
+            className="w-11 h-11 border border-edge-faint rounded-full text-light/60 hover:text-light hover:border-accent transition-colors"
             aria-label="Previous release"
           >
             ←
           </button>
           <button
             onClick={() => setActiveIndex((i) => Math.min(i + 1, releases.length - 1))}
-            className="w-10 h-10 border border-edge-faint rounded-full text-light/60 hover:text-light hover:border-accent transition-colors"
+            className="w-11 h-11 border border-edge-faint rounded-full text-light/60 hover:text-light hover:border-accent transition-colors"
             aria-label="Next release"
           >
             →
@@ -114,7 +114,7 @@ export function CoverflowCarousel() {
           href={releases[activeIndex].hyperfollow}
           target="_blank"
           rel="noreferrer noopener"
-          className="inline-block font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-3 border border-accent text-accent hover:bg-accent hover:text-void transition-colors"
+          className="inline-block font-mono text-[11px] tracking-[0.2em] uppercase px-6 md:px-10 py-3 md:py-4 border border-accent text-accent hover:bg-accent hover:text-void transition-colors min-h-[44px]"
         >
           Listen to {releases[activeIndex].title}
         </a>

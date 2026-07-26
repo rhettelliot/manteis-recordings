@@ -85,11 +85,11 @@ export function HorizontalReleases() {
 
   return (
     <section ref={sectionRef} className="h-screen w-full overflow-hidden relative bg-void z-10">
-      <div className="section-label absolute top-8 left-6 md:left-12 z-20">Momentum Catalog /</div>
+      <div className="section-label absolute top-8 left-6 md:left-10 z-20">Momentum Catalog /</div>
 
       <div
         ref={trackRef}
-        className="flex h-full items-center gap-6 md:gap-10 px-6 md:px-12 w-max will-change-transform"
+        className="flex h-full items-center gap-6 md:gap-10 px-6 md:px-10 w-max will-change-transform"
       >
         {releases.map((release, i) => (
           <a

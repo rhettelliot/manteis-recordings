@@ -107,7 +107,7 @@ export function ParallaxHero() {
         ))}
       </div>
 
-      <div className="hero-content text-center relative z-10 px-8 w-full max-w-6xl mx-auto will-change-transform">
+      <div className="hero-content text-center relative z-10 px-6 w-full max-w-6xl mx-auto will-change-transform">
         <p className="hero-label-top font-mono text-[10px] tracking-[0.3em] uppercase text-accent mb-10">
           Independent Label · Seattle, WA · Est. 2024
         </p>
@@ -124,10 +124,10 @@ export function ParallaxHero() {
         </div>
 
         <h1 className="overflow-hidden pb-4 mb-6">
-          <div className="hero-title-inner font-display text-[3.5rem] sm:text-7xl md:text-[8rem] lg:text-[9.5rem] font-bold leading-[0.86] tracking-[-0.04em] text-light">
+          <div className="hero-title-inner font-display text-[clamp(3.5rem,14vw,9.5rem)] font-bold leading-[0.86] tracking-[-0.04em] text-light">
             Manteis
           </div>
-          <div className="hero-title-inner font-display text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1] tracking-[0.08em] uppercase text-light-dim">
+          <div className="hero-title-inner font-display text-[clamp(2rem,7vw,6rem)] font-light leading-[1] tracking-[0.08em] uppercase text-light-dim">
             Recordings
           </div>
         </h1>

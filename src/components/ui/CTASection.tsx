@@ -21,17 +21,17 @@ export function CTASection() {
 
   return (
     <section ref={sectionRef} className="py-32 md:py-48">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
+      <div className="max-w-4xl mx-auto px-6 md:px-10 text-center">
         <div className="cta-content">
           <div className="section-label mb-8 justify-center">Submit /</div>
 
-          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-[-0.03em] mb-6">
+          <h2 className="font-display text-[clamp(2.5rem,7vw,4.5rem)] font-bold leading-[1.02] tracking-[-0.03em] mb-6">
             <span className="hollow-text">Join the</span>
             <br />
             <span className="text-accent">roster.</span>
           </h2>
 
-          <p className="text-lg text-light-dim max-w-lg mx-auto mb-10">
+          <p className="text-base md:text-lg text-light-dim max-w-lg mx-auto mb-10">
             Manteis Recordings is always looking for artists who treat texture as structure.
             If your sound belongs here, we want to hear it.
           </p>
@@ -39,9 +39,9 @@ export function CTASection() {
           <a
             href="mailto:demo@manteisrecordings.com"
             aria-label="Submit demo via email"
-            className="inline-block font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4
+            className="inline-block font-mono text-[11px] tracking-[0.2em] uppercase px-8 md:px-10 py-4
               border border-accent text-accent hover:bg-accent hover:text-void
-              transition-all duration-300 btn-snap"
+              transition-all duration-300 btn-snap min-h-[44px] flex items-center"
           >
             Submit Demo
           </a>

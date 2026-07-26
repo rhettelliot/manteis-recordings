@@ -6,14 +6,14 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="py-16 md:py-24 px-6 md:px-12">
+    <footer className="py-16 md:py-24 px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
         <div className="divider-glow mb-16" />
 
         <div className="flex flex-col md:flex-row justify-between items-start gap-12">
           {/* Left — wordmark */}
           <div>
-            <h3 className="font-display text-2xl md:text-3xl font-bold tracking-[-0.02em] mb-2">
+            <h3 className="font-display text-[clamp(1.5rem,5vw,2rem)] font-bold tracking-[-0.02em] mb-2">
               Manteis Recordings
             </h3>
             <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-light-muted">
@@ -26,7 +26,7 @@ export function Footer() {
             <p className="font-mono text-[9px] tracking-[0.25em] uppercase text-light-muted mb-4">
               Roster
             </p>
-            <div className="flex flex-col gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2">
               {artists.map((artist) => (
                 <a
                   key={artist.name}
