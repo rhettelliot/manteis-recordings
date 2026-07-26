@@ -1,24 +1,18 @@
 import type { Metadata, Viewport } from 'next'
 import '@/styles/globals.css'
-import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import { artists, releases } from '@/lib/catalog'
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-body',
+  weight: ['200', '400', '500', '600', '700'],
   display: 'swap',
 })
 
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
-  display: 'swap',
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-display',
-  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 })
 
@@ -86,8 +80,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-void text-light antialiased">
+    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
+      <body className="bg-[#0D0F12] text-[#9EA4B0] antialiased">
+        <div className="grain" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
