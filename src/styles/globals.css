@@ -194,3 +194,30 @@
 .clip-slit {
   clip-path: polygon(0% 0%, 100% 0%, 100% 20%, 0% 20%, 0% 30%, 100% 30%, 100% 50%, 0% 50%, 0% 60%, 100% 60%, 100% 80%, 0% 80%, 0% 90%, 100% 90%, 100% 100%, 0% 100%);
 }
+/* ─── LEGACY ALIASES — old class names pointing to new tokens ─── */
+:root {
+  --void: var(--color-canvas);
+  --void-raised: var(--color-surface);
+  --void-elevated: #1A1E24;
+  --void-float: #1C1C1C;
+  --signal-pink: var(--color-signal);
+  --signal-pink-dim: var(--color-signal-dim);
+  --signal-pink-glow: rgba(255, 85, 0, 0.25);
+  --signal-pink-border: rgba(255, 85, 0, 0.35);
+  --font-display: var(--font-body);
+}
+
+.bg-void { background-color: var(--color-canvas) !important; }
+.bg-void-raised { background-color: var(--color-surface) !important; }
+.bg-void-elevated { background-color: #1A1E24 !important; }
+.bg-void-float { background-color: #1C1C1C !important; }
+.text-light { color: var(--color-ink) !important; }
+.text-light-muted { color: var(--color-ink-2) !important; }
+.text-light-dim { color: var(--color-ink-3) !important; }
+.text-signal-pink { color: var(--color-signal) !important; }
+.bg-signal-pink { background-color: var(--color-signal) !important; }
+.border-signal-pink { border-color: var(--color-signal) !important; }
+.border-edge-faint { border-color: var(--color-border) !important; }
+.border-edge { border-color: var(--color-border-hi) !important; }
+.font-display { font-family: var(--font-body) !important; }
+
