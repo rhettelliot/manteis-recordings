@@ -56,8 +56,8 @@ export function Philosophy() {
     }
 
     const ctx = gsap.context(() => {
-      gsap.set(lines, { opacity: 0.15, filter: 'blur(4px)' })
-      gsap.set(statEls, { opacity: 0 })
+      gsap.set(lines, { opacity: 1, filter: 'blur(0px)' })
+      gsap.set(statEls, { opacity: 1 })
       if (systems) gsap.set(systems, { opacity: 0, y: 30 })
 
       const tl = gsap.timeline({
@@ -86,7 +86,7 @@ export function Philosophy() {
         const end = start + 0.18
         tl.fromTo(
           line,
-          { opacity: 0.15, filter: 'blur(4px)', y: 20 },
+          { opacity: 1, filter: 'blur(0px)', y: 0 },
           { opacity: 1, filter: 'blur(0px)', y: 0, ease: 'none' },
           start
         )

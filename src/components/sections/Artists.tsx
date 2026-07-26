@@ -24,11 +24,11 @@ export function Artists() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="artists" className="py-32 md:py-48 relative">
+    <section ref={sectionRef} id="artists" className="py-16 md:py-24 relative">
       <ArtistHoverTrailLayer />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
-        <div className="section-label mb-20">Roster /</div>
+        <div className="section-label mb-8">Roster /</div>
 
         <h2 className="artists-heading font-display text-[clamp(2.5rem,8vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.03em] mb-6">
           <span className="hollow-text">Artists</span>
@@ -87,7 +87,7 @@ export function Artists() {
         </div>
       </div>
 
-      <div className="divider-glow max-w-5xl mx-auto mt-32" />
+      <div className="divider-glow max-w-5xl mx-auto mt-16" />
     </section>
   )
 }
