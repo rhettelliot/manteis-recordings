@@ -182,22 +182,22 @@ export function Hero() {
         </p>
 
         {/* Brand mark — the cube */}
-        <div className="hero-cube cube-drift mx-auto w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative">
+        <div className="hero-cube cube-drift mx-auto w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 relative">
           <Image
             src="/ManteisRecordings_color.png"
             alt="Manteis Recordings brand cube"
             fill
             className="object-contain"
-            sizes="384px"
+            sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, 320px"
             priority
           />
         </div>
 
         <h1 className="overflow-hidden pb-2 mb-2 -mt-4">
-          <div className="hero-title-inner font-display text-[3.5rem] sm:text-7xl md:text-[8rem] lg:text-[9.5rem] font-bold leading-[0.86] tracking-[-0.04em] text-light">
+          <div className="hero-title-inner font-display text-[clamp(3rem,14vw,10rem)] font-bold leading-[0.86] tracking-[-0.04em] text-light">
             Manteis
           </div>
-          <div className="hero-title-inner font-display text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1] tracking-[0.08em] uppercase text-light-dim">
+          <div className="hero-title-inner font-display text-[clamp(1.25rem,5vw,4rem)] font-light leading-[1] tracking-[0.08em] uppercase text-light-dim">
             Recordings
           </div>
         </h1>

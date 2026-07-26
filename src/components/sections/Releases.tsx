@@ -63,16 +63,16 @@ export function Releases() {
                 <div className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4" style={{ color: featured.color }}>
                   {featured.catalogNumber} · {featured.year} · {featured.tracks} tracks
                 </div>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.95] tracking-[-0.03em] mb-2">
+                <h2 className="font-display text-[clamp(2rem,7vw,3.75rem)] font-bold leading-[0.95] tracking-[-0.03em] mb-2">
                   {featured.title}
                 </h2>
                 <p className="font-display text-xl md:text-2xl font-light text-light-dim mb-8">
                   {featured.artist}
                 </p>
 
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                   <span
-                    className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border transition-transform duration-300 btn-snap"
+                    className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border transition-transform duration-300 btn-snap min-h-[44px] flex items-center"
                     style={{ borderColor: featured.color, color: featured.color }}
                   >
                     Listen
