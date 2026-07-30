@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { releases, artists, type Release } from "@/lib/catalog";
@@ -153,7 +153,7 @@ function ReleaseCard({ release, format }: { release: Release; format: Format }) 
     initial: { opacity: 1, y: 24 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-60px" },
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 0.6, ease: "easeOut" as const },
   };
 
   const stripeKey = `${release.catalogNumber}-${format}`;
@@ -264,7 +264,7 @@ export default function ShopPage() {
     initial: { opacity: 1, y: 24 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-80px" },
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 0.7, ease: "easeOut" as const },
   };
 
   return (
