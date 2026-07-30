@@ -8,6 +8,7 @@ export function Navigation() {
     { label: 'Catalog', href: '#releases' },
     { label: 'Roster', href: '#artists' },
     { label: 'Manifesto', href: '#philosophy' },
+    { label: 'Shop', href: '/shop' },
   ]
 
   return (
