@@ -1,9 +1,10 @@
 # Sync Licensing Pitch Emails — Draft for Rhett Approval
-## Status: AWAITING APPROVAL — Rhett sends these from his email
-## Created: 2026-08-17 | Engine: Xen
+## Status: SYNC REEL READY — pitches updated to reference 16-track mood-organized reel
+## Created: 2026-08-17 | Updated: 2026-08-21 | Engine: Xen
 
-> Based on research in RESEARCH/sync-licensing.md
+> Based on research in RESEARCH/sync-licensing.md and RESEARCH/sync-reel-tracklist.md
 > Strategy: Marmoset first (PNW fit, non-exclusive, Netflix/HBO/Apple clients), then Musicbed, then Bungie direct (local game studio).
+> Sync reel: RESEARCH/sync-reel-tracklist.md — 16 tracks across 5 mood categories with BPM, key, duration, and scene-fit notes.
 
 ---
 
@@ -24,7 +25,7 @@ Our sound sits in the space between ambient, synthwave, deep techno, and devotio
 
 All tracks are mastered, have clean metadata (BPM, key, mood tags), and we have instrumental versions and stems available. ISRC codes registered. We're ASCAP-registered.
 
-Being PNW-based (Seattle), I'd love the opportunity to connect directly. Full catalog and streaming links at manteisrecordings.com — I can send a curated sync reel on request.
+Being PNW-based (Seattle), I'd love the opportunity to connect directly. Full catalog and streaming links at manteisrecordings.com — I've attached a curated sync reel organized by mood/use-case (16 tracks across meditative, tension, driving, atmospheric, and intimate categories) with BPM, key, and sync-use notes for each track.
 
 Best,
 Rhett Elliot
@@ -51,6 +52,8 @@ A few tracks that showcase the range:
 
 All tracks mastered with clean metadata. Instrumental versions and stems available for every release. Non-exclusive licensing is fine — we want placements, not lock-in.
 
+I've prepared a curated sync reel — 16 tracks organized by mood and use-case (meditative, tension, driving, atmospheric, intimate) with BPM, key, duration, and specific scene-fit notes for each. Happy to send the full reel as a private SoundCloud playlist or PDF.
+
 Full streaming catalog: manteisrecordings.com
 Submission genre tags: electronic, ambient, cinematic
 
@@ -76,7 +79,7 @@ Our label has 9 releases across 5 artists, all rooted in deep textural electroni
 - **"The Source"** (The Manteis Project) — 20-track generative ambient suite. Pure acoustic architecture — ideal for atmospheric world-building and installation moments.
 - **"Warehouse Bass"** (Thesan Musique) — 174 BPM DnB with sub-bass pressure. Kinetic, relentless — for high-intensity sequences.
 
-I can provide stems, alternate mixes, and custom edits for any tracks of interest. Happy to come by the studio for a listening session — we're local.
+I can provide stems, alternate mixes, and custom edits for any tracks of interest. I've also prepared a full sync reel — 16 tracks organized by mood/use-case with technical specs and scene-fit notes. Happy to come by the studio for a listening session — we're local.
 
 Best,
 Rhett Elliot
